@@ -1,0 +1,267 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>Dyf6riX2FNBeNTY-gt-408504-2019-03-11T22:03:17.473Z::pd.xml</types1:EntryId>
+      <types1:Name>getCustomerDetailsLocal</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>Get customer details from MySQL, and enrich with data from public GeoCode and Weather APIs</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.agent:Windows2012Agent</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2019-03-11T22:03:17Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2019-03-11T22:03:47Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2019-03-11T22:04:02Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.getCustomerDetailsLocal/getCustomerDetailsLocal.pd.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="getCustomerDetailsLocal"
+                  name="getCustomerDetailsLocal">
+            <appliesTo/>
+            <description>Get customer details from MySQL, and enrich with data from public GeoCode and Weather APIs</description>
+            <tags>.agent:Windows2012Agent</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="inCustID" required="true" type="double">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description=""
+                          name="inRequestType"
+                          required="true"
+                          type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="inRequestPriority" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="outCustName" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outAddress" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outPhone" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outEmail" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outLattitude" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outLongitude" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outStatus" type="string">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">Success</option>
+                  </options>
+               </field>
+               <field description="" name="outWeather" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outTemp" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outHumidity" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="outWindSpeed" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="tempCustomer" type="reference">
+                  <options>
+                     <option name="referenceTo">LocalOracle:CUSTOMERS_VIEW</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">bFZkoqXGoCabHPxbraGiQQ</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <targetLocation>Windows2012Agent</targetLocation>
+               <rest>
+                  <allowedUsers>
+                     <user>apiuser@dsutka.org</user>
+                  </allowedUsers>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="jgp8m4wg" targetId="jgp8m4wf"/>
+               </start>
+               <assignment id="jgp8m4wf">
+                  <title>Query customer record</title>
+                  <operation source="query" to="temp.tempCustomer">
+                     <query from="LocalOracle:CUSTOMERS_VIEW">
+                        <where>CUSTOMER_ID = {$input.inCustID}</where>
+                     </query>
+                  </operation>
+                  <link id="jort5riz" targetId="jort5riy"/>
+               </assignment>
+               <container id="jort5riy" type="exclusive">
+                  <title>CUSTOMER_ID</title>
+                  <flow id="jort5rj2">
+                     <assignment id="jort5rjs">
+                        <title>Assignment to outAddress, outCustName etc.</title>
+                        <operation source="formula" to="output.outAddress">
+                           <expression language="XQuery">$temp.tempCustomer[1]/STREET_ADDRESS || ', ' || $temp.tempCustomer[1]/CITY || ', ' || $temp.tempCustomer[1]/STATE_PROVINCE || ' ' || $temp.tempCustomer[1]/POSTAL_CODE </expression>
+                        </operation>
+                        <operation source="formula" to="output.outCustName">
+                           <expression language="XQuery">$temp.tempCustomer[1]/CUST_FIRST_NAME || ' ' || $temp.tempCustomer[1]/CUST_LAST_NAME </expression>
+                        </operation>
+                        <operation source="field" to="output.outEmail">temp.tempCustomer[1]/CUST_EMAIL</operation>
+                        <operation source="field" to="output.outPhone">temp.tempCustomer[1]/PRIMARY_PHONE_NUMBER</operation>
+                        <link id="jort5rke" targetId="jort5rk4"/>
+                     </assignment>
+                     <eventContainer id="jort5rk4">
+                        <service id="jort5rk9">
+                           <title>PublicGeoCode</title>
+                           <serviceName>FreePublicServices:PublicGeoCode</serviceName>
+                           <serviceGUID>aqQiJVotPkfdzofyZEBKKK</serviceGUID>
+                           <serviceInput>
+                              <parameter name="street" source="field" updatable="true">temp.tempCustomer[1]/STREET_ADDRESS</parameter>
+                              <parameter name="city" source="field" updatable="true">temp.tempCustomer[1]/CITY</parameter>
+                              <parameter name="state" source="field" updatable="true">temp.tempCustomer[1]/STATE_PROVINCE</parameter>
+                              <parameter name="zip" source="field" updatable="true">temp.tempCustomer[1]/POSTAL_CODE</parameter>
+                              <parameter name="benchmark" source="constant">Public_AR_Census2010</parameter>
+                              <parameter name="format" source="constant">json</parameter>
+                           </serviceInput>
+                        </service>
+                        <flow id="jort5rk5">
+                           <subflow id="jqfn4oe0">
+                              <title>getWeatherByZip</title>
+                              <subflowGUID>8RAR12WLyyDePEjC6atgMO</subflowGUID>
+                              <subflowPath>getWeatherByZip</subflowPath>
+                              <runForEach>false</runForEach>
+                              <input>
+                                 <parameter name="zipCode" source="field" updatable="true">temp.tempCustomer[1]/POSTAL_CODE</parameter>
+                              </input>
+                              <outputDef>
+                                 <field name="weatherDescription" type="string">
+                                    <options>
+                                       <option name="required">false</option>
+                                    </options>
+                                 </field>
+                                 <field name="weatherTemp" type="string">
+                                    <options>
+                                       <option name="required">false</option>
+                                    </options>
+                                 </field>
+                                 <field name="weatherHumidity" type="string">
+                                    <options>
+                                       <option name="required">false</option>
+                                    </options>
+                                 </field>
+                                 <field name="weatherWindSpeed" type="string">
+                                    <options>
+                                       <option name="required">false</option>
+                                    </options>
+                                 </field>
+                              </outputDef>
+                              <link id="jqfn4of3" targetId="jort5rks"/>
+                           </subflow>
+                           <assignment id="jort5rks">
+                              <title>Assignment to Output Parameters</title>
+                              <operation source="field" to="output.outLattitude">output.lat</operation>
+                              <operation source="field" to="output.outLongitude">output.long</operation>
+                              <operation source="field" to="output.outHumidity">output.weatherHumidity</operation>
+                              <operation source="field" to="output.outTemp">output.weatherTemp</operation>
+                              <operation source="field" to="output.outWeather">output.weatherDescription</operation>
+                              <operation source="field" to="output.outWindSpeed">output.weatherWindSpeed</operation>
+                              <link id="jort5rl8" targetId="jort5rl7"/>
+                           </assignment>
+                           <end id="jort5rl7">
+                              <title>Normal End</title>
+                           </end>
+                        </flow>
+                        <flow id="jort5rk6">
+                           <assignment id="jort5rk7">
+                              <title>SetFaultStatus</title>
+                              <operation source="formula" to="output.outStatus">
+                                 <expression language="XQuery">'Failed to geocode Customer: ' || $output.GeoCodeFault[1]/detail </expression>
+                              </operation>
+                              <link id="jort5rkd" targetId="jort5rk8"/>
+                           </assignment>
+                           <end id="jort5rk8">
+                              <title>End with No Geocode</title>
+                           </end>
+                        </flow>
+                        <link id="jort5rka" targetId="jort5rk5" type="containerLink"/>
+                        <events>
+                           <catch faultField="GeoCodeFault" id="jort5rhu" interrupting="true">
+                              <link id="jort5rkb" targetId="jort5rk6" type="containerLink"/>
+                           </catch>
+                        </events>
+                     </eventContainer>
+                  </flow>
+                  <flow id="jort5rj5">
+                     <assignment id="jort5rli">
+                        <title>Set Customer Not found status</title>
+                        <operation source="formula" to="output.outStatus">
+                           <expression language="XQuery">'Customer ID: ' || $input.inCustID  || ' not found.'</expression>
+                        </operation>
+                        <link id="jort5rlj" targetId="jort5rld"/>
+                     </assignment>
+                     <end id="jort5rld">
+                        <title>Customer not Found</title>
+                        <httpStatus>400</httpStatus>
+                     </end>
+                  </flow>
+                  <link id="jort5rj1" targetId="jort5rj2" type="containerLink">
+                     <condition source="formula">
+                        <function name="greater-than">
+                           <arg name="left">{$temp.tempCustomer[1]/CUSTOMER_ID}</arg>
+                           <arg name="right">{' '}</arg>
+                        </function>
+                     </condition>
+                  </link>
+                  <link id="jort5rj4" targetId="jort5rj5" type="containerLink"/>
+               </container>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>47xEGkai1owdfoKFBzoZGG</types1:GUID>
+      <types1:DisplayName>getCustomerDetailsLocal</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2019-11-15T10:43:32.036Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

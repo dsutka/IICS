@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "08OHrhJpjrekYL0BMbIvaI",
+    "name" : "SimpleCustomerGuide",
+    "type" : "GUIDE",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "WrclvAhrswVYx8R-gt-228666-2018-11-27T15:20:27.789Z::gt.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "gTVvLEB0oc7fhFqD7BYLIR",
+    "name" : "getCustomerDetails",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "4Cf5GkeHy2uI5CU-gt-99664-2018-05-02T15:14:05.189Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  } ]
+}

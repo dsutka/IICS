@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "aqQiJVotPkfdzofyZEBKKK",
+    "name" : "FreePublicServices",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "ZsEi4tciSrZMSPf-gt-352719-2018-05-02T15:42:45.838Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "9v5AcKiQQ2ffw9frlqxukA",
+    "name" : "FreePublicServices",
+    "type" : "AI_SERVICE_CONNECTOR",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "i3vJ4rswVYx8R8W-gt-99730-2018-05-02T15:33:31.137Z::svc.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  } ]
+}

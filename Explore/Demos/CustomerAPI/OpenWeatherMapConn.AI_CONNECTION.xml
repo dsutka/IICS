@@ -1,0 +1,50 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>A4T1UuEDySabbeJ-gt-600057-2018-11-26T13:30:05.142Z::conn.xml</types1:EntryId>
+      <types1:Name>OpenWeatherMapConn</types1:Name>
+      <types1:ParentFlowIds>YiPDlyBg7jvpppp-gt-1691126-2018-11-27T19:28:57.813Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+connection</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2018-11-26T13:30:05Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2019-06-03T17:54:30Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connection/OpenWeatherMapConn/OpenWeatherMapConn.conn.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
+                     displayName="OpenWeatherMapConn"
+                     label="OpenWeatherMapConn"
+                     name="OpenWeatherMapConn">
+            <description/>
+            <tags/>
+            <agent/>
+            <attributes>
+               <attribute encrypted="false"
+                          name="APIKey"
+                          value="a40c1863b614de898f5b9b6e27f11a08"/>
+            </attributes>
+            <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
+                               agentOnly="false"
+                               connectorPath="project:/rt.connector/OpenWeatherMapSC/OpenWeatherMapSC_svcDef.xml"
+                               guid="0XvVwdYE72DeaN73RNPc6r"
+                               name="OpenWeatherMapSC"
+                               supportsConnectionTest="false"
+                               uuid="6d96a172-f5ee-4bfd-986d-5250faf230ee">
+               <description/>
+            </businessConnector>
+         </connection>
+      </types1:Entry>
+      <types1:GUID>7xiUW51GxmeiFIsS9fmJok</types1:GUID>
+      <types1:DisplayName>OpenWeatherMapConn</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2019-11-15T10:43:31.845Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

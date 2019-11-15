@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "8RAR12WLyyDePEjC6atgMO",
+    "name" : "getWeatherByZip",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "YiPDlyBg7jvpppp-gt-1691126-2018-11-27T19:28:57.813Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "7xiUW51GxmeiFIsS9fmJok",
+    "name" : "OpenWeatherMapConn",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "A4T1UuEDySabbeJ-gt-600057-2018-11-26T13:30:05.142Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  } ]
+}

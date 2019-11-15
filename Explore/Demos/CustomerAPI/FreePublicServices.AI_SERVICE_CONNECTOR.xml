@@ -1,0 +1,240 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>i3vJ4rswVYx8R8W-gt-99730-2018-05-02T15:33:31.137Z::svc.xml</types1:EntryId>
+      <types1:Name>FreePublicServices</types1:Name>
+      <types1:ParentFlowIds>ZsEi4tciSrZMSPf-gt-352719-2018-05-02T15:42:45.838Z::conn.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+businesssconnector</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2018-05-02T15:33:31Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2018-10-11T12:58:06Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2018-10-11T12:58:11Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connector/FreePublicServices/FreePublicServices_svcDef.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
+                            agentOnly="false"
+                            debug="false"
+                            displayName="FreePublicServices"
+                            label=""
+                            name="FreePublicServices"
+                            uuid="99ed1a7b-182c-4d83-a777-ee52ff405af5">
+            <description/>
+            <tags/>
+            <connectionAttributes xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"/>
+            <actions>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="GoogleGeoCode"
+                       maxRedirects="100"
+                       name="GoogleGeoCode"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter description="Full Address String&#xA;Street, City, State Zip"
+                                label="Address to GeoCode"
+                                name="address"
+                                required="false"
+                                testWith="10 Greenfield Drive, Plaistow, NH 03865"
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://maps.googleapis.com/maps/api/geocode/json"
+                                        verb="GET"/>
+                  </binding>
+                  <output>
+                     <field description="" name="outLat" property="lat" type="string"/>
+                     <field description="" name="outLong" property="lng" type="string"/>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="PublicGeoCode"
+                       maxRedirects="100"
+                       name="PublicGeoCode"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter name="street"
+                                required="false"
+                                testWith="10 Greenfield Drive"
+                                type="string"/>
+                     <parameter name="city" required="false" testWith="Plaistow" type="string"/>
+                     <parameter name="state" required="false" testWith="NH" type="string"/>
+                     <parameter name="zip" required="false" testWith="03865" type="string"/>
+                     <parameter name="benchmark"
+                                required="false"
+                                testWith="Public_AR_Census2010"
+                                type="string"/>
+                     <parameter name="format" required="false" testWith="json" type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="https://geocoding.geo.census.gov/geocoder/locations/address"
+                                        verb="GET"/>
+                  </binding>
+                  <output>
+                     <field description="" name="lat" property="x" type="string"/>
+                     <field description="" name="long" property="y" type="string"/>
+                  </output>
+               </action>
+            </actions>
+            <objects>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="root">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="results" type="reference">
+                        <options>
+                           <option name="referenceTo">results</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="status" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="results">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="formatted_address" type="string"/>
+                     <field name="types" type="string"/>
+                     <field name="geometry" type="reference">
+                        <options>
+                           <option name="referenceTo">geometry</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="address_components" type="objectlist">
+                        <options>
+                           <option name="referenceTo">address_components</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="place_id" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="geometry">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="viewport" type="reference">
+                        <options>
+                           <option name="referenceTo">viewport</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="bounds" type="reference">
+                        <options>
+                           <option name="referenceTo">bounds</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="location" type="reference">
+                        <options>
+                           <option name="referenceTo">location</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="location_type" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="viewport">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="southwest" type="reference">
+                        <options>
+                           <option name="referenceTo">southwest</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="northeast" type="reference">
+                        <options>
+                           <option name="referenceTo">northeast</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="southwest">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="lng" type="double"/>
+                     <field name="lat" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="northeast">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="lng" type="double"/>
+                     <field name="lat" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="bounds">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="southwest" type="reference">
+                        <options>
+                           <option name="referenceTo">southwest</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="northeast" type="reference">
+                        <options>
+                           <option name="referenceTo">northeast</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="location">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="lng" type="double"/>
+                     <field name="lat" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="address_components">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="types" type="string"/>
+                     <field name="short_name" type="int"/>
+                     <field name="long_name" type="int"/>
+                  </detail>
+               </processObject>
+            </objects>
+         </businessConnector>
+      </types1:Entry>
+      <types1:GUID>9v5AcKiQQ2ffw9frlqxukA</types1:GUID>
+      <types1:DisplayName>FreePublicServices</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2019-11-15T10:43:31.708Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

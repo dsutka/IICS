@@ -1,0 +1,84 @@
+{
+  "objectInfo" : {
+    "id" : "gTVvLEB0oc7fhFqD7BYLIR",
+    "name" : "getCustomerDetails",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "4Cf5GkeHy2uI5CU-gt-99664-2018-05-02T15:14:05.189Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "bFZkoqXGoCabHPxbraGiQQ",
+    "name" : "LocalOracle",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "yXf66vfXjISUXL8-gt-5591-2018-04-18T10:57:56.397Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Common/Connections"
+  }, {
+    "id" : "8RAR12WLyyDePEjC6atgMO",
+    "name" : "getWeatherByZip",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "YiPDlyBg7jvpppp-gt-1691126-2018-11-27T19:28:57.813Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  }, {
+    "id" : "61VZe2hVnhtj1a2srVoYcQ",
+    "name" : "MyGoogleMaps",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "m9pNz6HKoJBUhty-gt-755760-2019-10-23T22:46:26.199Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : null,
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  } ]
+}

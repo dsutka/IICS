@@ -1,0 +1,97 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>YiPDlyBg7jvpppp-gt-1691126-2018-11-27T19:28:57.813Z::pd.xml</types1:EntryId>
+      <types1:Name>getWeatherByZip</types1:Name>
+      <types1:ParentFlowIds>RvEnPCOkSSHCwkN-gt-304524-2019-03-07T18:59:45.709Z::pd.xml,Dyf6riX2FNBeNTY-gt-408504-2019-03-11T22:03:17.473Z::pd.xml,4Cf5GkeHy2uI5CU-gt-99664-2018-05-02T15:14:05.189Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags>.anonymous</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2018-11-27T19:28:58Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2019-10-23T22:55:46Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2019-10-24T08:08:47Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.getWeatherByZip/getWeatherByZip.pd.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="getWeatherByZip"
+                  name="getWeatherByZip">
+            <appliesTo/>
+            <description/>
+            <tags>.anonymous</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="zipCode" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="weatherDescription" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="weatherTemp" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="weatherHumidity" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="weatherWindSpeed" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </output>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="none">
+               <rest>
+                  <allowAnonymousAccess/>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="jp04tukw" targetId="jp04tukv"/>
+               </start>
+               <service id="jp04tukv">
+                  <title>getWeatherByZip</title>
+                  <serviceName>OpenWeatherMapConn:getWeatherByZip</serviceName>
+                  <serviceGUID>7xiUW51GxmeiFIsS9fmJok</serviceGUID>
+                  <serviceInput>
+                     <parameter name="zip" source="field" updatable="true">input.zipCode</parameter>
+                     <parameter name="units" source="constant">imperial</parameter>
+                  </serviceInput>
+                  <link id="jp04tulg" targetId="jp04tulf"/>
+               </service>
+               <assignment id="jp04tulf">
+                  <title>Set Outputs</title>
+                  <operation source="field" to="output.weatherDescription">output.description</operation>
+                  <operation source="field" to="output.weatherHumidity">output.humidity</operation>
+                  <operation source="field" to="output.weatherTemp">output.temperature</operation>
+                  <operation source="field" to="output.weatherWindSpeed">output.windSpeed</operation>
+                  <link id="jp04tulh" targetId="c"/>
+               </assignment>
+               <end id="c"/>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>8RAR12WLyyDePEjC6atgMO</types1:GUID>
+      <types1:DisplayName>getWeatherByZip</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2019-11-15T10:43:31.967Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

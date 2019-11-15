@@ -1,0 +1,201 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>dqYXPiciT6sFsds-gt-447244-2018-11-26T13:15:57.051Z::svc.xml</types1:EntryId>
+      <types1:Name>OpenWeatherMapSC</types1:Name>
+      <types1:ParentFlowIds>A4T1UuEDySabbeJ-gt-600057-2018-11-26T13:30:05.142Z::conn.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+businesssconnector</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2018-11-26T13:15:57Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2019-06-03T17:53:47Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2019-06-03T17:54:16Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connector/OpenWeatherMapSC/OpenWeatherMapSC_svcDef.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
+                            agentOnly="false"
+                            debug="false"
+                            displayName="OpenWeatherMapSC"
+                            label=""
+                            name="OpenWeatherMapSC"
+                            uuid="6d96a172-f5ee-4bfd-986d-5250faf230ee">
+            <description/>
+            <tags/>
+            <connectionAttributes xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd">
+               <connectionAttribute description=""
+                                    masked="false"
+                                    name="APIKey"
+                                    required="true"
+                                    testWith="a40c1863b614de898f5b9b6e27f11a08"
+                                    type="string"/>
+            </connectionAttributes>
+            <actions>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="getWeatherByZip"
+                       maxRedirects="100"
+                       name="getWeatherByZip"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter name="zip" required="false" testWith="54301" type="string"/>
+                     <parameter name="units" required="false" testWith="imperial" type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="http://api.openweathermap.org/data/2.5/weather"
+                                        verb="GET">
+                        <otherParams>
+                           <otherParam name="appid">{$APIKey}</otherParam>
+                        </otherParams>
+                        <httpHeaders>
+                           <header name="Content-Type">application/json</header>
+                           <header name="Accept">application/json</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="temperature" property="temp" type="string"/>
+                     <field description=""
+                            name="humidity"
+                            property="humidity"
+                            type="string"/>
+                     <field description="" name="windSpeed" property="speed" type="string"/>
+                     <field description=""
+                            name="description"
+                            property="description"
+                            type="string"/>
+                  </output>
+               </action>
+            </actions>
+            <objects>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="root">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="dt" type="int"/>
+                     <field name="coord" type="reference">
+                        <options>
+                           <option name="referenceTo">coord</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="visibility" type="int"/>
+                     <field name="weather" type="objectlist">
+                        <options>
+                           <option name="referenceTo">weather</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="name" type="string"/>
+                     <field name="cod" type="int"/>
+                     <field name="main" type="reference">
+                        <options>
+                           <option name="referenceTo">main</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="clouds" type="reference">
+                        <options>
+                           <option name="referenceTo">clouds</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="id" type="int"/>
+                     <field name="sys" type="reference">
+                        <options>
+                           <option name="referenceTo">sys</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="base" type="string"/>
+                     <field name="wind" type="reference">
+                        <options>
+                           <option name="referenceTo">wind</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="coord">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="lon" type="double"/>
+                     <field name="lat" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="weather">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="icon" type="string"/>
+                     <field name="description" type="string"/>
+                     <field name="main" type="string"/>
+                     <field name="id" type="int"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="main">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="temp" type="double"/>
+                     <field name="temp_min" type="double"/>
+                     <field name="humidity" type="int"/>
+                     <field name="pressure" type="int"/>
+                     <field name="temp_max" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="clouds">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="all" type="int"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="sys">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="country" type="string"/>
+                     <field name="sunrise" type="int"/>
+                     <field name="sunset" type="int"/>
+                     <field name="id" type="int"/>
+                     <field name="type" type="int"/>
+                     <field name="message" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="wind">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="deg" type="int"/>
+                     <field name="speed" type="double"/>
+                  </detail>
+               </processObject>
+            </objects>
+         </businessConnector>
+      </types1:Entry>
+      <types1:GUID>0XvVwdYE72DeaN73RNPc6r</types1:GUID>
+      <types1:DisplayName>OpenWeatherMapSC</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2019-11-15T10:43:31.736Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

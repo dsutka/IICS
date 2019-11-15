@@ -1,0 +1,84 @@
+{
+  "objectInfo" : {
+    "id" : "47xEGkai1owdfoKFBzoZGG",
+    "name" : "getCustomerDetailsLocal",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "Dyf6riX2FNBeNTY-gt-408504-2019-03-11T22:03:17.473Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Get customer details from MySQL, and enrich with data from public GeoCode and Weather APIs",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "bFZkoqXGoCabHPxbraGiQQ",
+    "name" : "LocalOracle",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "yXf66vfXjISUXL8-gt-5591-2018-04-18T10:57:56.397Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Common/Connections"
+  }, {
+    "id" : "aqQiJVotPkfdzofyZEBKKK",
+    "name" : "FreePublicServices",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "ZsEi4tciSrZMSPf-gt-352719-2018-05-02T15:42:45.838Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  }, {
+    "id" : "8RAR12WLyyDePEjC6atgMO",
+    "name" : "getWeatherByZip",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "YiPDlyBg7jvpppp-gt-1691126-2018-11-27T19:28:57.813Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  } ]
+}

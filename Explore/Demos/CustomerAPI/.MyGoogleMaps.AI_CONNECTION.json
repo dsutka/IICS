@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "61VZe2hVnhtj1a2srVoYcQ",
+    "name" : "MyGoogleMaps",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "m9pNz6HKoJBUhty-gt-755760-2019-10-23T22:46:26.199Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : null,
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "0n884Iq0WEwlfZM96sPUeS",
+    "name" : "GoogleMaps",
+    "type" : "AI_SERVICE_CONNECTOR",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "ds3IH0Fdw8jIw8j-gt-245316-2019-10-23T22:46:26.05Z::svc.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : null,
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  } ]
+}

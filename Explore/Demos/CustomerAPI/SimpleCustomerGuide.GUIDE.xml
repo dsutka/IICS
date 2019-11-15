@@ -1,0 +1,270 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>WrclvAhrswVYx8R-gt-228666-2018-11-27T15:20:27.789Z::gt.xml</types1:EntryId>
+      <types1:Name>SimpleCustomerGuide</types1:Name>
+      <types1:MimeType>application/xml+screenflow</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2018-11-27T15:20:28Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2018-11-27T15:26:08Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2018-11-27T15:26:33Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/sf.SimpleCustomerGuide/SimpleCustomerGuide.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <avosScreenflow xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                         xmlns:list="urn:activevos:spi:list:functions"
+                         allowRestart="true"
+                         displayName="SimpleCustomerGuide"
+                         doneOnEndStep="false"
+                         name="SimpleCustomerGuide"
+                         runAsUser="$current">
+            <description/>
+            <appliesTo/>
+            <tags/>
+            <generator>Informatica Screenflow Designer 9</generator>
+            <input>
+               <parameter name="CustID" required="true" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <runOn target="desktop"/>
+            <notes/>
+            <deployment/>
+            <sendFeedback>
+               <emailTo/>
+            </sendFeedback>
+            <flow>
+               <startScreen id="jd300kk3">
+                  <title>Start</title>
+                  <body contentType="text/html"/>
+                  <actions>
+                     <action alt="" id="jd300kk3_jozvz8qf" targetScreen="jozvz8qf">
+                        <text>Continue</text>
+                     </action>
+                  </actions>
+                  <screenData skipIfRequiredFilled="true"/>
+               </startScreen>
+               <screen id="jozvz8qf">
+                  <title>Customer ID</title>
+                  <body contentType="text/html">&lt;p&gt;Enter The Customer ID: &lt;input name="input.CustID" type="text" value="CustID (input)*"&gt;&amp;nbsp;&lt;/p&gt;</body>
+                  <actionPrompt/>
+                  <actions>
+                     <action alt="" id="jozvz8qf_jozvz8pj" targetScreen="jozvz8pj">
+                        <text>Continue</text>
+                     </action>
+                  </actions>
+                  <screenData skipIfRequiredFilled="false">
+                     <screenDataItem name="input.CustID"
+                                     readonly="false"
+                                     required="true"
+                                     type="string">
+                        <options>
+                           <option name="required">true</option>
+                        </options>
+                     </screenDataItem>
+                  </screenData>
+               </screen>
+               <screen id="jozvz8vx">
+                  <title>Customer Details</title>
+                  <body contentType="text/html">&lt;p&gt;&lt;strong&gt;Customer Details&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Customer Name: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" name="output.outCustName" readonly="readonly" type="text" value="outCustName (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Customer Address: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" name="output.outAddress" readonly="readonly" type="text" value="outAddress (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Customer Phone: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" name="output.outPhone" readonly="readonly" type="text" value="outPhone (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Customer Email: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" name="output.outEmail" readonly="readonly" type="text" value="outEmail (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Customer GeoCode: Lat - &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" title="outLattitude (output)" name="output.outLattitude" readonly="readonly" type="text" value="outLattitude (output)"&gt; , Long - &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" title="outLongitude (output)" name="output.outLongitude" readonly="readonly" type="text" value="outLongitude (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;span style="text-decoration: underline;"&gt;&lt;strong&gt;Weather At Customer Location&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Weather Description: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" name="output.outWeather" readonly="readonly" type="text" value="outWeather (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Temperature: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" name="output.outTemp" readonly="readonly" type="text" value="outTemp (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Humidity: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" name="output.outHumidity" readonly="readonly" type="text" value="outHumidity (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Wind Speed: &lt;input style="-moz-appearance: none; background-color: lightgrey; border: none;" title="outWindSpeed (output)" name="output.outWindSpeed" readonly="readonly" type="text" value="outWindSpeed (output)"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</body>
+                  <actionPrompt/>
+                  <actions>
+                     <action alt="" id="jozvz8vx_jd4cwa59" targetScreen="jd4cwa59">
+                        <text>Continue</text>
+                     </action>
+                  </actions>
+                  <screenData skipIfRequiredFilled="false">
+                     <screenDataItem name="output.outCustName"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outAddress"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outPhone"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outEmail"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outLattitude"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outLongitude"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outWeather"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outTemp"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outHumidity"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                     <screenDataItem name="output.outWindSpeed"
+                                     readonly="true"
+                                     required="false"
+                                     type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </screenDataItem>
+                  </screenData>
+               </screen>
+               <endScreen id="jd4cwa59">
+                  <title>End</title>
+                  <body contentType="text/html"/>
+                  <redirectTo type="current_object"/>
+                  <screenActionLabel>
+                     <text/>
+                  </screenActionLabel>
+               </endScreen>
+               <callProcess id="jozvz8pj">
+                  <title>Call getCustomerDetails</title>
+                  <subflowGUID>gTVvLEB0oc7fhFqD7BYLIR</subflowGUID>
+                  <subflowPath>getCustomerDetails</subflowPath>
+                  <runAsUser>$current</runAsUser>
+                  <serviceInput>
+                     <parameter id="jozvz8tm" name="inCustID" source="formula" updatable="true">xpath $input.CustID </parameter>
+                  </serviceInput>
+                  <subflowOutput>
+                     <field name="outCustName" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outAddress" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outPhone" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outEmail" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outLattitude" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outLongitude" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outStatus" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outWeather" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outTemp" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outHumidity" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                     <field name="outWindSpeed" type="string">
+                        <options>
+                           <option name="required">false</option>
+                        </options>
+                     </field>
+                  </subflowOutput>
+                  <actions>
+                     <action alt="" id="jozvz8pj_jozvz8vx" targetScreen="jozvz8vx">
+                        <text>Continue</text>
+                     </action>
+                  </actions>
+               </callProcess>
+            </flow>
+         </avosScreenflow>
+      </types1:Entry>
+      <types1:GUID>08OHrhJpjrekYL0BMbIvaI</types1:GUID>
+      <types1:DisplayName>SimpleCustomerGuide</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2019-11-15T10:43:32.136Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
