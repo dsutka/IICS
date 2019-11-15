@@ -14,10 +14,10 @@
       <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
       <types1:CreationDate>2018-11-27T19:28:58Z</types1:CreationDate>
       <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
-      <types1:ModificationDate>2019-10-23T22:55:46Z</types1:ModificationDate>
+      <types1:ModificationDate>2019-11-15T10:51:43Z</types1:ModificationDate>
       <types1:PublicationStatus>published</types1:PublicationStatus>
       <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
-      <types1:PublicationDate>2019-10-24T08:08:47Z</types1:PublicationDate>
+      <types1:PublicationDate>2019-11-15T10:51:57Z</types1:PublicationDate>
       <types1:PublishedContributionId>project:/spi.getWeatherByZip/getWeatherByZip.pd.xml</types1:PublishedContributionId>
       <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
@@ -66,26 +66,45 @@
             </deployment>
             <flow id="a">
                <start id="b">
-                  <link id="jp04tukw" targetId="jp04tukv"/>
+                  <link id="jp04tukw" targetId="k300sh1l"/>
                </start>
-               <service id="jp04tukv">
-                  <title>getWeatherByZip</title>
-                  <serviceName>OpenWeatherMapConn:getWeatherByZip</serviceName>
-                  <serviceGUID>7xiUW51GxmeiFIsS9fmJok</serviceGUID>
-                  <serviceInput>
-                     <parameter name="zip" source="field" updatable="true">input.zipCode</parameter>
-                     <parameter name="units" source="constant">imperial</parameter>
-                  </serviceInput>
-                  <link id="jp04tulg" targetId="jp04tulf"/>
-               </service>
-               <assignment id="jp04tulf">
-                  <title>Set Outputs</title>
-                  <operation source="field" to="output.weatherDescription">output.description</operation>
-                  <operation source="field" to="output.weatherHumidity">output.humidity</operation>
-                  <operation source="field" to="output.weatherTemp">output.temperature</operation>
-                  <operation source="field" to="output.weatherWindSpeed">output.windSpeed</operation>
-                  <link id="jp04tulh" targetId="c"/>
-               </assignment>
+               <eventContainer id="k300sh1l">
+                  <service id="jp04tukv">
+                     <title>getWeatherByZip</title>
+                     <serviceName>OpenWeatherMapConn:getWeatherByZip</serviceName>
+                     <serviceGUID>7xiUW51GxmeiFIsS9fmJok</serviceGUID>
+                     <serviceInput>
+                        <parameter name="zip" source="field" updatable="true">input.zipCode</parameter>
+                        <parameter name="units" source="constant">imperial</parameter>
+                     </serviceInput>
+                  </service>
+                  <flow id="k300sh1n">
+                     <assignment id="k300sh1x">
+                        <title>Set Outputs</title>
+                        <operation source="field" to="output.weatherDescription">output.description</operation>
+                        <operation source="field" to="output.weatherHumidity">output.humidity</operation>
+                        <operation source="field" to="output.weatherTemp">output.temperature</operation>
+                        <operation source="field" to="output.weatherWindSpeed">output.windSpeed</operation>
+                     </assignment>
+                     <link id="k300sh1o" targetId="k300sh1l" type="containerLink"/>
+                  </flow>
+                  <flow id="k300sh1q">
+                     <assignment id="k300sh28">
+                        <title>Set Error Output</title>
+                        <operation source="formula" to="output.weatherDescription">
+                           <expression language="XQuery">'Failed to get weather by zip code for: ' || $input.zipCode || '. ' || $output.WeatherFault[1]/detail </expression>
+                        </operation>
+                     </assignment>
+                     <link id="k300sh1r" targetId="k300sh1l" type="containerLink"/>
+                  </flow>
+                  <link id="k300sh1m" targetId="k300sh1n" type="containerLink"/>
+                  <link id="k300sh1w" targetId="c"/>
+                  <events>
+                     <catch faultField="WeatherFault" id="k300sh1k" interrupting="true">
+                        <link id="k300sh1p" targetId="k300sh1q" type="containerLink"/>
+                     </catch>
+                  </events>
+               </eventContainer>
                <end id="c"/>
             </flow>
          </process>
@@ -93,5 +112,5 @@
       <types1:GUID>8RAR12WLyyDePEjC6atgMO</types1:GUID>
       <types1:DisplayName>getWeatherByZip</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2019-11-15T10:43:31.967Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2019-11-15T10:52:38.456Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>
