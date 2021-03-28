@@ -3,9 +3,12 @@
    <types1:Item>
       <types1:EntryId>4Cf5GkeHy2uI5CU-gt-99664-2018-05-02T15:14:05.189Z::pd.xml</types1:EntryId>
       <types1:Name>getCustomerDetails</types1:Name>
-      <types1:ParentFlowIds>WrclvAhrswVYx8R-gt-228666-2018-11-27T15:20:27.789Z::gt.xml</types1:ParentFlowIds>
+      <types1:ParentFlowIds>QSBi9zhFtybduaa-gt-5308116-2020-05-19T15:51:41.683Z::pd.xml,WrclvAhrswVYx8R-gt-228666-2018-11-27T15:20:27.789Z::gt.xml</types1:ParentFlowIds>
       <types1:MimeType>application/xml+process</types1:MimeType>
-      <types1:Description>Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs</types1:Description>
+      <types1:Description>Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs.
+- inCustID:The internally mapped ID for the customer requested. Currently tied to an Oracle table. (Required)
+- inRequestType: A simple, unused field used to demonstrate required vs. optional field. (Required)
+- inRequestPriority: Another simple field which is optional, and provides for some simple conditional logic to be applied to the outTest output field.</types1:Description>
       <types1:AppliesTo/>
       <types1:Tags/>
       <types1:VersionLabel>1.0</types1:VersionLabel>
@@ -14,28 +17,35 @@
       <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
       <types1:CreationDate>2018-05-02T15:14:05Z</types1:CreationDate>
       <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
-      <types1:ModificationDate>2019-10-24T14:22:20Z</types1:ModificationDate>
-      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:ModificationDate>2021-03-25T22:09:48Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
       <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
-      <types1:PublicationDate>2019-10-24T08:08:47Z</types1:PublicationDate>
+      <types1:PublicationDate>2021-03-28T14:24:19Z</types1:PublicationDate>
       <types1:PublishedContributionId>project:/spi.getCustomerDetails/getCustomerDetails.pd.xml</types1:PublishedContributionId>
       <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
          <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
                   xmlns:list="urn:activevos:spi:list:functions"
                   displayName="getCustomerDetails"
-                  name="getCustomerDetails">
+                  name="getCustomerDetails"
+                  overrideAPIName="false">
             <appliesTo/>
-            <description>Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs</description>
+            <description>Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs.
+- inCustID:The internally mapped ID for the customer requested. Currently tied to an Oracle table. (Required)
+- inRequestType: A simple, unused field used to demonstrate required vs. optional field. (Required)
+- inRequestPriority: Another simple field which is optional, and provides for some simple conditional logic to be applied to the outTest output field.</description>
             <tags/>
             <generator>Informatica Process Designer 11</generator>
             <input>
-               <parameter description="" name="inCustID" required="true" type="double">
+               <parameter description="The internally mapped ID for the customer requested. Currently tied to an Oracle table."
+                          name="inCustID"
+                          required="true"
+                          type="double">
                   <options>
                      <option name="required">false</option>
                   </options>
                </parameter>
-               <parameter description=""
+               <parameter description=" A simple, unused field used to demonstrate required vs. optional field."
                           name="inRequestType"
                           required="true"
                           type="string">
@@ -43,72 +53,38 @@
                      <option name="required">false</option>
                   </options>
                </parameter>
-               <parameter description="" name="inRequestPriority" type="string">
+               <parameter description="Another simple field which is optional, and provides for some simple conditional logic to be applied to the outTest output field."
+                          name="inRequestPriority"
+                          type="string">
                   <options>
                      <option name="required">false</option>
                   </options>
                </parameter>
             </input>
             <output>
-               <field description="" name="outCustName" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outAddress" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outPhone" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outEmail" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outLattitude" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outLongitude" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outStatus" type="string">
+               <field description="Simple status field providing an indication of whether the call succeeded or not"
+                      name="outStatus"
+                      type="string">
                   <options>
                      <option name="required">false</option>
                      <option name="initialvalue">Success</option>
                   </options>
                </field>
-               <field description="" name="outWeather" type="string">
+               <field description="Test output field which is not used for anything"
+                      name="outTest"
+                      type="string">
                   <options>
                      <option name="required">false</option>
                   </options>
                </field>
-               <field description="" name="outTemp" type="string">
+               <field description="Custom object created to represent a simple &#34;customer details&#34; record, including Address and Weather details."
+                      name="outCustomer"
+                      type="reference">
                   <options>
+                     <option name="referenceTo">$po:CustomerDetails</option>
                      <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outHumidity" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outWindSpeed" type="string">
-                  <options>
-                     <option name="required">false</option>
-                  </options>
-               </field>
-               <field description="" name="outTest" type="string">
-                  <options>
-                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">8wgEbthIf87hr1VjRqQp6e</option>
                   </options>
                </field>
             </output>
@@ -138,6 +114,9 @@
                   <allowedGroups>
                      <group>APIUsers</group>
                   </allowedGroups>
+                  <additionalConstraint>
+                     <constraint>APIM</constraint>
+                  </additionalConstraint>
                </rest>
             </deployment>
             <flow id="a">
@@ -145,9 +124,9 @@
                   <link id="jgp8m4wg" targetId="jgp8m4wf"/>
                </start>
                <assignment id="jgp8m4wf">
-                  <title>Query customer record</title>
+                  <title>Query customer record from Oracle</title>
                   <operation source="query" to="temp.tempCustomer">
-                     <query from="LocalOracle:CUSTOMERS_VIEW">
+                     <query advanceQuery="false" from="LocalOracle:CUSTOMERS_VIEW">
                         <where>CUSTOMER_ID = {$input.inCustID}</where>
                      </query>
                   </operation>
@@ -173,29 +152,27 @@ else
                   <title>CUSTOMER_ID</title>
                   <flow id="jort5rj2">
                      <assignment id="jort5rjs">
-                        <title>Assignment to outAddress, outCustName etc.</title>
-                        <operation source="formula" to="output.outAddress">
-                           <expression language="XQuery">$temp.tempCustomer[1]/STREET_ADDRESS || ', ' || $temp.tempCustomer[1]/CITY || ', ' || $temp.tempCustomer[1]/STATE_PROVINCE || ' ' || $temp.tempCustomer[1]/POSTAL_CODE </expression>
-                        </operation>
-                        <operation source="formula" to="output.outCustName">
+                        <title>Transform Address and Name, and set output variables</title>
+                        <operation source="formula" to="output.outCustomer[1]/Name">
                            <expression language="XQuery">$temp.tempCustomer[1]/CUST_FIRST_NAME || ' ' || $temp.tempCustomer[1]/CUST_LAST_NAME </expression>
                         </operation>
-                        <operation source="field" to="output.outEmail">temp.tempCustomer[1]/CUST_EMAIL</operation>
-                        <operation source="field" to="output.outPhone">temp.tempCustomer[1]/PRIMARY_PHONE_NUMBER</operation>
+                        <operation source="field" to="output.outCustomer[1]/Email">temp.tempCustomer[1]/CUST_EMAIL</operation>
+                        <operation source="field" to="output.outCustomer[1]/PhoneNumber">temp.tempCustomer[1]/PRIMARY_PHONE_NUMBER</operation>
+                        <operation source="formula" to="output.outCustomer[1]/Address[1]/LongAddress">
+                           <expression language="XQuery">$temp.tempCustomer[1]/STREET_ADDRESS || ', ' || $temp.tempCustomer[1]/CITY || ', ' || $temp.tempCustomer[1]/STATE_PROVINCE || ' ' || $temp.tempCustomer[1]/POSTAL_CODE </expression>
+                        </operation>
                         <link id="k24f0idl" targetId="k24f0ig5"/>
                      </assignment>
                      <eventContainer id="k24f0ig5">
                         <service id="k24f0idk">
-                           <title>getGeocodeByAddress</title>
+                           <title>Call Google to Geocode Address</title>
                            <serviceName>MyGoogleMaps-1:getGeocodeByAddress</serviceName>
                            <serviceGUID>61VZe2hVnhtj1a2srVoYcQ</serviceGUID>
-                           <serviceInput>
-                              <parameter name="address" source="field" updatable="true">output.outAddress</parameter>
-                           </serviceInput>
+                           <serviceInput/>
                         </service>
                         <flow id="k24f0ig7">
                            <subflow id="k24f0igr">
-                              <title>getWeatherByZip</title>
+                              <title>Get Weather by ZipCode</title>
                               <subflowGUID>8RAR12WLyyDePEjC6atgMO</subflowGUID>
                               <subflowPath>getWeatherByZip</subflowPath>
                               <runForEach>false</runForEach>
@@ -227,13 +204,13 @@ else
                               <link id="k24f0iha" targetId="k24f0ih9"/>
                            </subflow>
                            <assignment id="k24f0ih9">
-                              <title>Assignment to Output Parameters</title>
-                              <operation source="field" to="output.outLattitude">output.lattitude</operation>
-                              <operation source="field" to="output.outLongitude">output.longitude</operation>
-                              <operation source="field" to="output.outHumidity">output.weatherHumidity</operation>
-                              <operation source="field" to="output.outTemp">output.weatherTemp</operation>
-                              <operation source="field" to="output.outWeather">output.weatherDescription</operation>
-                              <operation source="field" to="output.outWindSpeed">output.weatherWindSpeed</operation>
+                              <title>Assignment to Latitude, Longitude etc.</title>
+                              <operation source="field" to="output.outCustomer[1]/Address[1]/Latitude">output.lattitude</operation>
+                              <operation source="field" to="output.outCustomer[1]/Address[1]/Longitude">output.longitude</operation>
+                              <operation source="field" to="output.outCustomer[1]/Weather[1]/Description">output.weatherDescription</operation>
+                              <operation source="field" to="output.outCustomer[1]/Weather[1]/Temperature">output.weatherTemp</operation>
+                              <operation source="field" to="output.outCustomer[1]/Weather[1]/Humidity">output.weatherHumidity</operation>
+                              <operation source="field" to="output.outCustomer[1]/Weather[1]/Windspeed">output.weatherWindSpeed</operation>
                               <link id="k24f0ihy" targetId="k24f0ihx"/>
                            </assignment>
                            <end id="k24f0ihx">
@@ -246,7 +223,7 @@ else
                               <operation source="formula" to="output.outStatus">
                                  <expression language="XQuery">'Failed to geocode Customer: ' || $output.GoogleMapsFault[1]/detail </expression>
                               </operation>
-                              <link id="k24f0ijw" targetId="k24f0ijv"/>
+                              <link id="kafe2ws6" targetId="k24f0ijv"/>
                            </assignment>
                            <end id="k24f0ijv">
                               <title>End with no Geocode</title>
@@ -275,9 +252,8 @@ else
                   </flow>
                   <link id="jort5rj1" targetId="jort5rj2" type="containerLink">
                      <condition source="formula">
-                        <function name="greater-than">
-                           <arg name="left">{$temp.tempCustomer[1]/CUSTOMER_ID}</arg>
-                           <arg name="right">{' '}</arg>
+                        <function name="set">
+                           <arg name="field">{$temp.tempCustomer[1]/CUSTOMER_ID}</arg>
                         </function>
                      </condition>
                   </link>
@@ -285,9 +261,23 @@ else
                </container>
             </flow>
          </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>0596fe61-067b-4487-8fd2-32772f2e5772</ns1:Id>
+               <ns1:Name>Test1</ns1:Name>
+               <ns1:CreatedBy>davesutka@informaticaR28.com</ns1:CreatedBy>
+               <ns1:CreationDate>2020-01-16T20:17:51Z</ns1:CreationDate>
+               <ns1:ModifiedBy>davesutka@informaticaR28.com</ns1:ModifiedBy>
+               <ns1:ModifiedDate>2020-01-16T20:27:55Z</ns1:ModifiedDate>
+               <ns1:Data format="json">{
+	 "inCustID": "149",
+	 "inRequestType": "Test"
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
       </types1:Entry>
       <types1:GUID>gTVvLEB0oc7fhFqD7BYLIR</types1:GUID>
       <types1:DisplayName>getCustomerDetails</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2019-11-15T10:43:32.066Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2021-03-28T14:25:02.128Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>

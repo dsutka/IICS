@@ -13,7 +13,7 @@
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs",
+        "description" : "Get customer details from Oracle, and enrich with data from public GeoCode and Weather APIs.\n- inCustID:The internally mapped ID for the customer requested. Currently tied to an Oracle table. (Required)\n- inRequestType: A simple, unused field used to demonstrate required vs. optional field. (Required)\n- inRequestPriority: Another simple field which is optional, and provides for some simple conditional logic to be applied to the outTest output field.",
         "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }
@@ -21,6 +21,26 @@
   },
   "dataFileExtension" : "xml",
   "objectRefs" : [ {
+    "id" : "8wgEbthIf87hr1VjRqQp6e",
+    "name" : "CustomerDetails",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "oqhPVEQrXhNUdyO-gt-468856-2020-08-10T16:53:12.229Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Example Schema for a Customer",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  }, {
     "id" : "bFZkoqXGoCabHPxbraGiQQ",
     "name" : "LocalOracle",
     "type" : "AI_CONNECTION",
@@ -34,12 +54,12 @@
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "",
+        "description" : "Connection to local Oracle instance in the OE Schema",
         "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }
     },
-    "path" : "/Explore/Common/Connections"
+    "path" : "/Explore/Connectors/Connections"
   }, {
     "id" : "8RAR12WLyyDePEjC6atgMO",
     "name" : "getWeatherByZip",
@@ -54,7 +74,7 @@
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "",
+        "description" : "Leverages the OpenWeather API to retrieve weather details based on a specified zip code",
         "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }
@@ -74,8 +94,8 @@
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "",
-        "contentType" : null,
+        "description" : "Connection to GoogleMapsAPI",
+        "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }
     },
