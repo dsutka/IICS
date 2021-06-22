@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "bFZkoqXGoCabHPxbraGiQQ",
+    "name" : "LocalOracle",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "yXf66vfXjISUXL8-gt-5591-2018-04-18T10:57:56.397Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Connection to local Oracle instance in the OE Schema",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}

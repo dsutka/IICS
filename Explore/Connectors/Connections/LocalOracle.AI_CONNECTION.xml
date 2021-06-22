@@ -1,0 +1,84 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>yXf66vfXjISUXL8-gt-5591-2018-04-18T10:57:56.397Z::conn.xml</types1:EntryId>
+      <types1:Name>LocalOracle</types1:Name>
+      <types1:ParentFlowIds>4Cf5GkeHy2uI5CU-gt-99664-2018-05-02T15:14:05.189Z::pd.xml,5OjiTIKchzt1Y6t-gt-29464588-2021-04-27T12:06:11.903Z::pd.xml,aaaa-gt-3465057-2020-04-13T15:36:53.006Z::pd.xml,AKlFmVSciY3AxtP-gt-29456332-2021-04-27T12:01:43.1Z::pd.xml,AVR3aaa-gt-8415295-2020-07-23T13:54:41.421Z::pd.xml,D83eHRi92qBbbeJ-gt-526021-2020-05-19T16:06:37.468Z::pd.xml,Dyf6riX2FNBeNTY-gt-408504-2019-03-11T22:03:17.473Z::pd.xml,Ezrwn2H0Fdw8jIw-gt-4344879-2020-04-14T20:40:00.249Z::pd.xml,FDkSSHCwkNmumf6-gt-34822500-2021-03-29T21:46:59.51Z::pd.xml,GabdxWq9bdsreK8-gt-8309894-2020-04-14T19:32:35.529Z::pd.xml,gp5OjG4abck0Kn7-gt-1122399-2020-07-31T12:15:05.111Z::pd.xml,JK3gk1AhrswVYx8-gt-1567538-2020-06-04T12:57:41.579Z::pd.xml,K5tmYOxfSmbduaa-gt-4328670-2020-04-14T19:23:03.958Z::pd.xml,lTXRZXDyvs7xvk0-gt-62051972-2021-04-27T11:48:29.193Z::pd.xml,onQYWeIssjqluQg-gt-2550884-2020-07-31T14:49:52.228Z::pd.xml,UDv2vSx0aa-gt-24316591-2020-05-11T13:48:04.374Z::pd.xml,VNKSmvD4teIssjq-gt-2458816-2020-07-31T12:28:26.772Z::pd.xml,VPNzUzeA8rJ4pbg-gt-1166784-2020-07-31T14:52:43.772Z::pd.xml,vX3cjk91pqrzYLn-gt-29987910-2021-02-28T22:56:17.343Z::pd.xml,whKYHPRPjAXhNUd-gt-594641-2019-10-24T09:00:13.623Z::pd.xml,WJdypKwKBqRi92q-gt-16315018-2021-05-14T16:34:30.778Z::pd.xml,yIYmWR7hsAVR3aa-gt-666547-2020-07-16T18:43:42.394Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+connection</types1:MimeType>
+      <types1:Description>Connection to local Oracle instance in the OE Schema</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.agent:Windows2012Agent</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2018-04-18T10:57:56Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-04-23T13:22:48Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2021-04-23T14:14:39Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connection/LocalOracle/LocalOracle.conn.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
+                     displayName="LocalOracle"
+                     label="LocalOracle"
+                     name="LocalOracle">
+            <description>Connection to local Oracle instance in the OE Schema</description>
+            <tags>.agent:Windows2012Agent</tags>
+            <agent>Windows2012Agent</agent>
+            <attributes>
+               <attribute encrypted="false"
+                          name="JDBC Connection URL"
+                          value="jdbc:oracle:thin:@localhost:1521/ORCLDEMO"/>
+               <attribute encrypted="false"
+                          name="JDBC Jar Directory"
+                          value="C:\Informatica\SecureAgent\apps\process-engine\ext"/>
+               <attribute encrypted="false" name="JDBC Driver Class Name" value=""/>
+               <attribute encrypted="false" name="Schema" value="oe"/>
+               <attribute encrypted="false" name="Username" value="oe"/>
+               <attribute encrypted="true" name="Password" value=""/>
+               <attribute encrypted="false"
+                          name="Object Filter"
+                          value="OPTIONTRANSACTIONS,PROMOTIONS, CUSTOMERS_VIEW, ORDERS_VIEW, CATEGORIES_TAB, PRODUCTS, MESSAGELOG, ORDERPART, PARTCOMPONENT,MESSAGES,PROCESSEDMESSAGES"/>
+               <attribute encrypted="false" name="TimeZone" value="Default"/>
+               <attribute encrypted="false" name="$read-Isolation Level" value="None"/>
+               <attribute encrypted="false"
+                          name="$read-Override Isolation Level"
+                          value="false"/>
+               <attribute encrypted="false" name="$write-Number of retries" value="5"/>
+               <attribute encrypted="false" name="$write-Retry wait period" value="3"/>
+            </attributes>
+            <javaConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
+                           agentOnly="true"
+                           plugin="ICS"
+                           supportsConnectionTest="true"
+                           supportsDataPreview="true"
+                           supportsOData="true"
+                           type="GenericJDBCAdapter"
+                           uuid="33ec8fc7-dc6d-4d2e-9f6f-a950669a62d1">
+               <description>JDBC  Generic Cloud Adapter</description>
+            </javaConnector>
+            <odata>
+               <enabled>true</enabled>
+               <cloudAccessEnabled>true</cloudAccessEnabled>
+               <allowedUsers>
+                  <user>davesutka@informaticaR28.com</user>
+               </allowedUsers>
+               <customKeys>
+                  <customKey entity="CUSTOMERS_VIEW">
+                     <field>CUSTOMER_ID</field>
+                  </customKey>
+                  <customKey entity="ORDERS_VIEW">
+                     <field>ORDER_ID</field>
+                  </customKey>
+               </customKeys>
+            </odata>
+         </connection>
+      </types1:Entry>
+      <types1:GUID>bFZkoqXGoCabHPxbraGiQQ</types1:GUID>
+      <types1:DisplayName>LocalOracle</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2021-06-22T17:01:18.997Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
