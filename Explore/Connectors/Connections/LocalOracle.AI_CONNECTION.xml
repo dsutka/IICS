@@ -31,14 +31,14 @@
             <attributes>
                <attribute encrypted="false"
                           name="JDBC Connection URL"
-                          value="jdbc:oracle:thin:@localhost:1521/ORCLDEMO"/>
+                          value="jdbc:oracle:thin:@localhost:1521/ORCL"/>
                <attribute encrypted="false"
                           name="JDBC Jar Directory"
                           value="C:\Informatica\SecureAgent\apps\process-engine\ext"/>
                <attribute encrypted="false" name="JDBC Driver Class Name" value=""/>
-               <attribute encrypted="false" name="Schema" value="oe"/>
-               <attribute encrypted="false" name="Username" value="oe"/>
-               <attribute encrypted="true" name="Password" value=""/>
+               <attribute encrypted="false" name="Schema" value="foo"/>
+               <attribute encrypted="false" name="Username" value="foo"/>
+               <attribute encrypted="true" name="Password" value="foo"/>
                <attribute encrypted="false"
                           name="Object Filter"
                           value="OPTIONTRANSACTIONS,PROMOTIONS, CUSTOMERS_VIEW, ORDERS_VIEW, CATEGORIES_TAB, PRODUCTS, MESSAGELOG, ORDERPART, PARTCOMPONENT,MESSAGES,PROCESSEDMESSAGES"/>
