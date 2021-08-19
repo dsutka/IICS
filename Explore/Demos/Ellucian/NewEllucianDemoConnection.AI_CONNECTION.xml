@@ -28,7 +28,7 @@
             <tags/>
             <agent/>
             <attributes>
-               <attribute encrypted="true" name="UserKey" value=""/>
+               <attribute encrypted="true" name="UserKey" value="This is a test user key"/>
             </attributes>
             <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
                                agentOnly="false"
