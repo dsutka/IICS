@@ -1,0 +1,48 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>Bt0i98C1LOwD0wW-gt-22921269-2021-08-19T12:57:34.439Z::conn.xml</types1:EntryId>
+      <types1:Name>NewEllucianDemoConnection</types1:Name>
+      <types1:MimeType>application/xml+connection</types1:MimeType>
+      <types1:Description>Connection to Ellucian API interface</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2021-08-19T12:57:34Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-08-19T12:57:54Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2021-08-19T12:58:21Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connection/NewEllucianDemoConnection/NewEllucianDemoConnection.conn.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
+                     displayName="NewEllucianDemoConnection"
+                     label="NewEllucianDemoConnection"
+                     name="NewEllucianDemoConnection">
+            <description>Connection to Ellucian API interface</description>
+            <tags/>
+            <agent/>
+            <attributes>
+               <attribute encrypted="true" name="UserKey" value=""/>
+            </attributes>
+            <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
+                               agentOnly="false"
+                               connectorPath="project:/rt.connector/EllucianCloud_SC/EllucianCloud_SC_svcDef.xml"
+                               guid="bgHCKc32bO4bnEpPCfTAGx"
+                               name="EllucianCloud_SC"
+                               supportsConnectionTest="false"
+                               uuid="3e75338c-2aab-4b30-a953-5f32ce54021b">
+               <description>Service Connector describing how to leverage Course-centric API calls against the Ellucian Ethos API</description>
+            </businessConnector>
+         </connection>
+      </types1:Entry>
+      <types1:GUID>kzfoUQYwgW3h7edJfWzBqs</types1:GUID>
+      <types1:DisplayName>NewEllucianDemoConnection</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2021-08-19T12:58:49.86Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
