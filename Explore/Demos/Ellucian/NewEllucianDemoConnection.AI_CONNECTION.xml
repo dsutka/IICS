@@ -28,7 +28,7 @@
             <tags/>
             <agent/>
             <attributes>
-               <attribute encrypted="true" name="UserKey" value="515dcce4-a93c-49dc-bf2b-a633f8cd8f1d"/>
+               <attribute encrypted="true" name="UserKey" value="Garbage"/>
             </attributes>
             <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
                                agentOnly="false"
