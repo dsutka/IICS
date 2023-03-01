@@ -1,0 +1,235 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>8LpwT1UuEDySabb-gt-313757-2018-10-09T15:30:22.962Z::pd.xml</types1:EntryId>
+      <types1:Name>Upload_Document_To_DocuSign</types1:Name>
+      <types1:ParentFlowIds>LGY2KsJlv58pIO3-gt-3118006-2019-01-23T18:03:55.604Z::gt.xml,Sgk5FsdsFsdsFsd-gt-4296441-2019-01-22T18:49:06.371Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>API exposed to support sending an NDA document to Docusign, and triggering the e-signature process. Will wait for a callback from Docusign once the e-signature is complete, and write some simple status to a database.</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.anonymous</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2018-10-09T15:30:23Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-02-23T13:49:49Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2019-04-25T20:49:58Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.Upload_Document_To_DocuSign/Upload_Document_To_DocuSign.pd.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="Upload Document To DocuSign"
+                  name="Upload_Document_To_DocuSign"
+                  overrideAPIName="false">
+            <appliesTo/>
+            <description>API exposed to support sending an NDA document to Docusign, and triggering the e-signature process. Will wait for a callback from Docusign once the e-signature is complete, and write some simple status to a database.</description>
+            <tags>.anonymous</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="Recipient_Email" type="email">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="Recipient_Name" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="Recipient_Phone" type="phone">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="File" type="attachment">
+                  <options>
+                     <option hide="true" name="count">1</option>
+                     <option name="maxsize">5242880</option>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="RequestStatus" type="string">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">Document Accepted</option>
+                  </options>
+               </field>
+               <field description="" name="outEnvelopeID" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </output>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <rest>
+                  <allowAnonymousAccess/>
+               </rest>
+            </deployment>
+            <eventDefinitions>
+               <messageDefinition name="CallbackFromDocusign">
+                  <input>
+                     <parameter correlationPath="."
+                                description=""
+                                name="EnvelopeID"
+                                required="true"
+                                type="string"/>
+                  </input>
+                  <deployment>
+                     <rest>
+                        <allowAnonymousAccess/>
+                     </rest>
+                  </deployment>
+               </messageDefinition>
+            </eventDefinitions>
+            <flow id="a">
+               <start id="b">
+                  <link id="jpe9kmyu" targetId="jpe9kmz1"/>
+               </start>
+               <eventContainer id="jpe9kmz1">
+                  <service id="c">
+                     <title>Login</title>
+                     <serviceName>DocusignCn:Login</serviceName>
+                     <serviceGUID/>
+                     <serviceInput/>
+                  </service>
+                  <flow id="jpe9kmz3">
+                     <eventContainer id="jpe9kn18">
+                        <service id="jpe9kn0j">
+                           <title>Send Document For eSignature</title>
+                           <serviceName>DocusignCn:Send Document For eSignature</serviceName>
+                           <serviceGUID/>
+                           <serviceInput>
+                              <parameter name="eSignatureRequest" source="formula">
+                                 <expression language="XQuery">&lt;root&gt;	
+&lt;documents&gt;
+		&lt;documentBase64&gt;{sff:getBase64FromAttachment($input.File)}&lt;/documentBase64&gt;
+		&lt;documentId&gt;1&lt;/documentId&gt;
+		&lt;fileExtension&gt;pdf&lt;/fileExtension&gt;
+		&lt;name&gt;NDA.pdf&lt;/name&gt;
+	&lt;/documents&gt;
+	&lt;emailSubject&gt;Please sign the NDA&lt;/emailSubject&gt;
+	&lt;recipients&gt;
+		&lt;signers&gt;
+			&lt;email&gt;{$input.Recipient_Email}&lt;/email&gt;
+			&lt;name&gt;{$input.Recipient_Name}&lt;/name&gt;
+			&lt;recipientId&gt;1&lt;/recipientId&gt;
+			&lt;routingOrder&gt;1&lt;/routingOrder&gt;
+			&lt;tabs&gt;
+				&lt;dateSignedTabs&gt;
+					&lt;anchorString&gt;signer1date&lt;/anchorString&gt;
+					&lt;anchorYOffset&gt;-6&lt;/anchorYOffset&gt;
+					&lt;fontSize&gt;Size12&lt;/fontSize&gt;
+					&lt;name&gt;Date Signed&lt;/name&gt;
+					&lt;recipientId&gt;1&lt;/recipientId&gt;
+					&lt;tabLabel&gt;date_signed&lt;/tabLabel&gt;
+				&lt;/dateSignedTabs&gt;
+				&lt;fullNameTabs&gt;
+					&lt;anchorString&gt;signer1name&lt;/anchorString&gt;
+					&lt;anchorYOffset&gt;-6&lt;/anchorYOffset&gt;
+					&lt;fontSize&gt;Size12&lt;/fontSize&gt;
+					&lt;name&gt;Full Name&lt;/name&gt;
+					&lt;recipientId&gt;1&lt;/recipientId&gt;
+					&lt;tabLabel&gt;Full Name&lt;/tabLabel&gt;
+				&lt;/fullNameTabs&gt;
+				&lt;signHereTabs&gt;
+					&lt;anchorString&gt;signer1sig&lt;/anchorString&gt;
+					&lt;anchorUnits&gt;mms&lt;/anchorUnits&gt;
+					&lt;anchorXOffset&gt;0&lt;/anchorXOffset&gt;
+					&lt;anchorYOffset&gt;0&lt;/anchorYOffset&gt;
+					&lt;name&gt;Please sign here&lt;/name&gt;
+					&lt;optional&gt;false&lt;/optional&gt;
+					&lt;recipientId&gt;1&lt;/recipientId&gt;
+					&lt;scaleValue&gt;1&lt;/scaleValue&gt;
+					&lt;tabLabel&gt;signer1sig&lt;/tabLabel&gt;
+				&lt;/signHereTabs&gt;
+			&lt;/tabs&gt;
+		&lt;/signers&gt;
+	&lt;/recipients&gt;
+	&lt;status&gt;sent&lt;/status&gt;
+&lt;/root&gt;</expression>
+                              </parameter>
+                           </serviceInput>
+                        </service>
+                        <flow id="jpe9kn1a">
+                           <milestone id="jpe9kn2s">
+                              <title>Return control</title>
+                              <link id="jpe9kn2x" targetId="jpe9kn2w"/>
+                           </milestone>
+                           <receive id="jpe9kn2w">
+                              <title>Wait for Docusign Callback</title>
+                              <message refer="CallbackFromDocusign">
+                                 <correlation>
+                                    <parameter name="EnvelopeID" source="field" updatable="true">output.envelopeId</parameter>
+                                 </correlation>
+                              </message>
+                              <link id="jpe9kn32" targetId="jpe9kn31"/>
+                           </receive>
+                           <create id="jpe9kn31">
+                              <title>Write Status Record</title>
+                              <entityName>LocalMySQL:document_status</entityName>
+                              <createInput>
+                                 <parameter name="EnvelopeID" source="field" updatable="true">output.envelopeId</parameter>
+                                 <parameter name="ProcessTime" source="formula" updatable="true">
+                                    <expression language="XQuery">fn:current-dateTime()</expression>
+                                 </parameter>
+                              </createInput>
+                              <link id="jt023kl2" targetId="jt023kl1"/>
+                           </create>
+                           <assignment id="jt023kl1">
+                              <title>Assignment to outEnvelopeID</title>
+                              <operation source="field" to="output.outEnvelopeID">output.envelopeId</operation>
+                              <link id="jt023kl3" targetId="jpe9kn3e"/>
+                           </assignment>
+                           <end id="jpe9kn3e"/>
+                        </flow>
+                        <flow id="jpe9kn1d">
+                           <assignment id="jpe9kn1l">
+                              <title>Set Document Failure Message</title>
+                              <operation source="constant" to="output.RequestStatus">Failed to send document to Docusign</operation>
+                              <link id="jpe9kn1y" targetId="jpe9kn1x"/>
+                           </assignment>
+                           <end id="jpe9kn1x">
+                              <title>Document Send Error End</title>
+                           </end>
+                        </flow>
+                        <link id="jpe9kn19" targetId="jpe9kn1a" type="containerLink"/>
+                        <events>
+                           <catch faultField="DocumentFault" id="jpe9kn17" interrupting="true">
+                              <link id="jpe9kn1c" targetId="jpe9kn1d" type="containerLink"/>
+                           </catch>
+                        </events>
+                     </eventContainer>
+                  </flow>
+                  <flow id="jpe9kmz6">
+                     <assignment id="jpe9kmzz">
+                        <title>Set Failure Message</title>
+                        <operation source="constant" to="output.RequestStatus">Failed to connect to Docusign</operation>
+                        <link id="jpe9kn0e" targetId="jpe9kn0d"/>
+                     </assignment>
+                     <end id="jpe9kn0d">
+                        <title>Login Error End</title>
+                     </end>
+                  </flow>
+                  <link id="jpe9kmz2" targetId="jpe9kmz3" type="containerLink"/>
+                  <events>
+                     <catch faultField="LoginFault" id="jpe9kmz0" interrupting="true">
+                        <link id="jpe9kmz5" targetId="jpe9kmz6" type="containerLink"/>
+                     </catch>
+                  </events>
+               </eventContainer>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>3oOIiIS8d2cdxuxeLU7Sgz</types1:GUID>
+      <types1:DisplayName>Upload Document To DocuSign</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2023-03-01T17:12:46.267Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

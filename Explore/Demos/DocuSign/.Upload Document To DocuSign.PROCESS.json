@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "3oOIiIS8d2cdxuxeLU7Sgz",
+    "name" : "Upload Document To DocuSign",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "8LpwT1UuEDySabb-gt-313757-2018-10-09T15:30:22.962Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "API exposed to support sending an NDA document to Docusign, and triggering the e-signature process. Will wait for a callback from Docusign once the e-signature is complete, and write some simple status to a database.",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
