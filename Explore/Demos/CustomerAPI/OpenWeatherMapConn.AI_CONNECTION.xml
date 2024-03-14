@@ -3,9 +3,9 @@
    <types1:Item>
       <types1:EntryId>A4T1UuEDySabbeJ-gt-600057-2018-11-26T13:30:05.142Z::conn.xml</types1:EntryId>
       <types1:Name>OpenWeatherMapConn</types1:Name>
-      <types1:ParentFlowIds>YiPDlyBg7jvpppp-gt-1691126-2018-11-27T19:28:57.813Z::pd.xml</types1:ParentFlowIds>
+      <types1:ParentFlowIds>w4i5rdsMkdypKwK-gt-3232973-2020-01-17T10:18:46.359Z::pd.xml</types1:ParentFlowIds>
       <types1:MimeType>application/xml+connection</types1:MimeType>
-      <types1:Description/>
+      <types1:Description>Connection to the OpenWeatherMap API</types1:Description>
       <types1:AppliesTo/>
       <types1:Tags/>
       <types1:VersionLabel>1.0</types1:VersionLabel>
@@ -13,10 +13,11 @@
       <types1:ProcessGroup/>
       <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
       <types1:CreationDate>2018-11-26T13:30:05Z</types1:CreationDate>
-      <types1:ModifiedBy/>
-      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2020-11-10T14:36:38Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
       <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
-      <types1:PublicationDate>2019-06-03T17:54:30Z</types1:PublicationDate>
+      <types1:PublicationDate>2020-01-17T10:37:04Z</types1:PublicationDate>
       <types1:PublishedContributionId>project:/rt.connection/OpenWeatherMapConn/OpenWeatherMapConn.conn.xml</types1:PublishedContributionId>
       <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
@@ -24,18 +25,15 @@
                      displayName="OpenWeatherMapConn"
                      label="OpenWeatherMapConn"
                      name="OpenWeatherMapConn">
-            <description/>
+            <description>Connection to the OpenWeatherMap API</description>
             <tags/>
             <agent/>
             <attributes>
-               <attribute encrypted="false"
-                          name="APIKey"
-                          value="a40c1863b614de898f5b9b6e27f11a08"/>
+               <attribute encrypted="true" name="APIKey" value=""/>
             </attributes>
             <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
                                agentOnly="false"
                                connectorPath="project:/rt.connector/OpenWeatherMapSC/OpenWeatherMapSC_svcDef.xml"
-                               guid="0XvVwdYE72DeaN73RNPc6r"
                                name="OpenWeatherMapSC"
                                supportsConnectionTest="false"
                                uuid="6d96a172-f5ee-4bfd-986d-5250faf230ee">
@@ -46,5 +44,5 @@
       <types1:GUID>7xiUW51GxmeiFIsS9fmJok</types1:GUID>
       <types1:DisplayName>OpenWeatherMapConn</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2019-11-15T10:43:31.845Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2024-03-14T23:19:02.956Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>
