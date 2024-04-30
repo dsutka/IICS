@@ -1,0 +1,25 @@
+{
+  "objectInfo" : {
+    "id" : "c4jRjmNNeeKckzCFtcy6YQ",
+    "name" : "EllucianFiles",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "oHY2KsJlv58pIO3-gt-4173132-2019-11-25T15:55:06.423Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "updateTime" : "2024-04-30T12:04:19.693Z",
+  "objectRefs" : [ ]
+}

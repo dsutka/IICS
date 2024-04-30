@@ -1,0 +1,489 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>DtJGD4ARW8UBM7z-gt-4669589-2019-11-19T13:28:19.48Z::svc.xml</types1:EntryId>
+      <types1:Name>EllucianCloud_SC</types1:Name>
+      <types1:ParentFlowIds>Bt0i98C1LOwD0wW-gt-22921269-2021-08-19T12:57:34.439Z::conn.xml,WaabchspiRASmvD-gt-9143388-2019-11-25T14:11:22.78Z::conn.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+businesssconnector</types1:MimeType>
+      <types1:Description>*** Service Connector describing how to leverage Course-centric API calls against the Ellucian Ethos API</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2019-11-19T13:28:19Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2023-06-06T15:25:07Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2022-07-28T11:24:20Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connector/EllucianCloud_SC/EllucianCloud_SC_svcDef.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
+                            agentOnly="false"
+                            debug="false"
+                            displayName="EllucianCloud_SC"
+                            label=""
+                            name="EllucianCloud_SC"
+                            uuid="3e75338c-2aab-4b30-a953-5f32ce54021b">
+            <description>*** Service Connector describing how to leverage Course-centric API calls against the Ellucian Ethos API</description>
+            <tags/>
+            <connectionAttributes xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd">
+               <connectionAttribute description=""
+                                    masked="true"
+                                    name="UserKey"
+                                    required="true"
+                                    testWith=""
+                                    type="string"/>
+            </connectionAttributes>
+            <actions>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get Token"
+                       maxRedirects="100"
+                       name="Get Token"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description>First Step:  Get a working token based on User Key</description>
+                  <input/>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/auth"
+                                        verb="POST">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$UserKey}</header>
+                        </httpHeaders>
+                        <body generateUsing="JSON" preserveJsonStringFormatting="true"/>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="sessionToken" type="string">
+                        <xquery>{//result/text()}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get All Academic Periods"
+                       maxRedirects="100"
+                       name="Get All Academic Periods"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter name="inToken"
+                                nogen="true"
+                                required="false"
+                                testWith="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2ciOlsiQVVESVRfTE9HUyIsImFwaV9tY19mZWF0dXJlc19lbmFibGVkIiwiZGFfc3RhdHVzX3BhZ2UiLCJhcHBsaWNhdGlvbl9tb25pdG9yaW5nIiwiU0hPV19ORVdfV0laQVJEIiwiU0hPV19ORVdfV0laQVJEIiwiYXBwbGljYXRpb25fbW9uaXRvcmluZyIsImFwcGxpY2F0aW9uX21vbml0b3JpbmciLCJ0ZXN0MSJdLCJ0ZW5hbnQiOnsiaWQiOiI1ZjEzZGMyNi0xZWI0LTQ3NTEtYThjZS0yMDZiMWQ4NjIyZGEiLCJhbGlhcyI6ImVpdDkwNyIsIm5hbWUiOiJFdGhvcyBJbnRlZ3JhdGlvbiBUZWFtIiwibGFiZWwiOiJCYW5uZXIiLCJhY2NvdW50SWQiOiJJbnRlcm5hbEV0aG9zIEludGVncmF0aW9uIFRlYW0ifSwic3ViIjoiNTdlZTBkZTYtZGMzNC00YzFmLWFkOTMtZDg5NDcxNTY5ODZjIiwiaWF0IjoxNjU4OTY3MTUyLCJleHAiOjE2NTg5Njc0NTJ9.5bU0h9Do7H52lFrs8rhuPAY9DVlis40ezYmmcz2f1wk"
+                                type="string"/>
+                     <parameter name="offset" required="false" testWith="0" type="string"/>
+                     <parameter name="limit" required="false" testWith="10" type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/api/academic-periods"
+                                        verb="GET">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$inToken}</header>
+                           <header name="Accept">application/json</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="APs" type="objectlist">
+                        <options>
+                           <option name="referenceTo">academicPeriod</option>
+                        </options>
+                        <xquery>{for $ap in //root/element()
+return
+&lt;academicPeriod&gt;
+   &lt;id&gt;{$ap/id/data()}&lt;/id&gt;
+   &lt;startOn&gt;{$ap/startOn/data()}&lt;/startOn&gt;
+   &lt;endOn&gt;{$ap/endOn/data()}&lt;/endOn&gt;
+   &lt;title&gt;{$ap/title/data()}&lt;/title&gt;
+   &lt;categoryType&gt;{$ap/category/type/data()}&lt;/categoryType&gt;
+&lt;/academicPeriod&gt;}</xquery>
+                     </field>
+                     <field description=""
+                            name="TotalAPCount"
+                            responseHeader="x-total-count"
+                            type="int"/>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get All Sections"
+                       maxRedirects="100"
+                       name="Get All Sections"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter name="inToken"
+                                nogen="true"
+                                required="false"
+                                testWith="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2ciOlsiU0hPV19ORVdfV0laQVJEIl0sInRlbmFudCI6eyJpZCI6IjVmMTNkYzI2LTFlYjQtNDc1MS1hOGNlLTIwNmIxZDg2MjJkYSIsImFsaWFzIjoiZWl0OTA3IiwibmFtZSI6IkV0aG9zIEludGVncmF0aW9uIFRlYW0iLCJsYWJlbCI6IkJhbm5lciIsImFjY291bnRJZCI6IkludGVybmFsRXRob3MgSW50ZWdyYXRpb24gVGVhbSJ9LCJzdWIiOiI1N2VlMGRlNi1kYzM0LTRjMWYtYWQ5My1kODk0NzE1Njk4NmMiLCJpYXQiOjE2MDE2NjM3MjMsImV4cCI6MTYwMTY2NDAyM30.ac2L7b0P5AtuDA4pJ0ksVl6dm5o8jx1pT6oFWMq3ROA"
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/api/sections"
+                                        verb="GET">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$inToken}</header>
+                           <header name="Accept">application/vnd.hedtech.integration.v8+json</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="Sections" type="objectlist">
+                        <options>
+                           <option name="referenceTo">sectionSummary</option>
+                        </options>
+                        <xquery>{for $sec in //root/element()
+return
+&lt;sectionSummary&gt;
+   &lt;title&gt;{$sec/title/data()}&lt;/title&gt;
+   &lt;number&gt;{$sec/number/data()}&lt;/number&gt;
+   &lt;code&gt;{$sec/code/data()}&lt;/code&gt;
+   &lt;maxEnrollment&gt;{$sec/maxEnrollment/data()}&lt;/maxEnrollment&gt;
+   &lt;startOn&gt;{$sec/startOn/data()}&lt;/startOn&gt;
+&lt;/sectionSummary&gt;}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get All Courses"
+                       maxRedirects="100"
+                       name="Get All Courses"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter name="inToken"
+                                nogen="true"
+                                required="false"
+                                testWith="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2ciOlsiQVVESVRfTE9HUyIsImFwaV9tY19mZWF0dXJlc19lbmFibGVkIiwiZGFfc3RhdHVzX3BhZ2UiLCJhcHBsaWNhdGlvbl9tb25pdG9yaW5nIiwiU0hPV19ORVdfV0laQVJEIiwiU0hPV19ORVdfV0laQVJEIiwiYXBwbGljYXRpb25fbW9uaXRvcmluZyIsImFwcGxpY2F0aW9uX21vbml0b3JpbmciLCJ0ZXN0MSJdLCJ0ZW5hbnQiOnsiaWQiOiI1ZjEzZGMyNi0xZWI0LTQ3NTEtYThjZS0yMDZiMWQ4NjIyZGEiLCJhbGlhcyI6ImVpdDkwNyIsIm5hbWUiOiJFdGhvcyBJbnRlZ3JhdGlvbiBUZWFtIiwibGFiZWwiOiJCYW5uZXIiLCJhY2NvdW50SWQiOiJJbnRlcm5hbEV0aG9zIEludGVncmF0aW9uIFRlYW0ifSwic3ViIjoiNTdlZTBkZTYtZGMzNC00YzFmLWFkOTMtZDg5NDcxNTY5ODZjIiwiaWF0IjoxNjU5MDA2ODg2LCJleHAiOjE2NTkwMDcxODZ9.wndad0U3iGqK6TTCqttMADHls50opiN3l8s12M7f6Tk"
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/api/courses"
+                                        verb="GET">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$inToken}</header>
+                           <header name="Accept">application/json</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output/>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get Course By ID"
+                       maxRedirects="100"
+                       name="Get Course By ID"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description>Third Step: For each Course ID provided, get details.</description>
+                  <input>
+                     <parameter name="courseID"
+                                nogen="true"
+                                required="false"
+                                testWith="b81550fd-d6a3-4f0b-86c9-654173f8170f"
+                                type="string"/>
+                     <parameter name="inToken"
+                                nogen="true"
+                                required="false"
+                                testWith="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2ciOlsiQVVESVRfTE9HUyIsImFwaV9tY19mZWF0dXJlc19lbmFibGVkIiwiZGFfc3RhdHVzX3BhZ2UiLCJhcHBsaWNhdGlvbl9tb25pdG9yaW5nIiwiU0hPV19ORVdfV0laQVJEIiwiU0hPV19ORVdfV0laQVJEIiwiYXBwbGljYXRpb25fbW9uaXRvcmluZyIsImFwcGxpY2F0aW9uX21vbml0b3JpbmciLCJ0ZXN0MSJdLCJ0ZW5hbnQiOnsiaWQiOiI1ZjEzZGMyNi0xZWI0LTQ3NTEtYThjZS0yMDZiMWQ4NjIyZGEiLCJhbGlhcyI6ImVpdDkwNyIsIm5hbWUiOiJFdGhvcyBJbnRlZ3JhdGlvbiBUZWFtIiwibGFiZWwiOiJCYW5uZXIiLCJhY2NvdW50SWQiOiJJbnRlcm5hbEV0aG9zIEludGVncmF0aW9uIFRlYW0ifSwic3ViIjoiNTdlZTBkZTYtZGMzNC00YzFmLWFkOTMtZDg5NDcxNTY5ODZjIiwiaWF0IjoxNjg1OTg5MTkxLCJleHAiOjE2ODU5ODk0OTF9.ua4ngNxaSlUFuwvmZ2WpyT0YfECnpfw1C17n272qLHE"
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/api/courses/{$courseID}"
+                                        verb="GET">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$inToken}</header>
+                           <header name="Accept">application/json</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="outTitle" type="string">
+                        <xquery>{//root/titles/value/data()}</xquery>
+                     </field>
+                     <field description="" name="outNumber" type="string">
+                        <xquery>{//root/number/data()}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get Sections By Academic Period"
+                       maxRedirects="100"
+                       name="Get Sections By Academic Period"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description>Second Step: Get list of available Course Sections for a given Academic Period</description>
+                  <input>
+                     <parameter name="inToken"
+                                nogen="true"
+                                required="false"
+                                testWith="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2ciOlsiQVVESVRfTE9HUyIsImFwaV9tY19mZWF0dXJlc19lbmFibGVkIiwiZGFfc3RhdHVzX3BhZ2UiLCJhcHBsaWNhdGlvbl9tb25pdG9yaW5nIiwiU0hPV19ORVdfV0laQVJEIiwiU0hPV19ORVdfV0laQVJEIiwiYXBwbGljYXRpb25fbW9uaXRvcmluZyIsImFwcGxpY2F0aW9uX21vbml0b3JpbmciLCJ0ZXN0MSJdLCJ0ZW5hbnQiOnsiaWQiOiI1ZjEzZGMyNi0xZWI0LTQ3NTEtYThjZS0yMDZiMWQ4NjIyZGEiLCJhbGlhcyI6ImVpdDkwNyIsIm5hbWUiOiJFdGhvcyBJbnRlZ3JhdGlvbiBUZWFtIiwibGFiZWwiOiJCYW5uZXIiLCJhY2NvdW50SWQiOiJJbnRlcm5hbEV0aG9zIEludGVncmF0aW9uIFRlYW0ifSwic3ViIjoiNTdlZTBkZTYtZGMzNC00YzFmLWFkOTMtZDg5NDcxNTY5ODZjIiwiaWF0IjoxNjU4OTY3MTUyLCJleHAiOjE2NTg5Njc0NTJ9.5bU0h9Do7H52lFrs8rhuPAY9DVlis40ezYmmcz2f1wk"
+                                type="string"/>
+                     <parameter name="inAcademicPeriod"
+                                nogen="true"
+                                required="false"
+                                testWith="0c0fcffe-fcd0-4015-afe4-22e7e7157f9f"
+                                type="string"/>
+                     <parameter name="offset" required="false" testWith="0" type="string"/>
+                     <parameter name="limit" required="false" testWith="10" type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/api/sections"
+                                        verb="GET">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <otherParams>
+                           <otherParam name="criteria">{{"academicPeriod":{{"id":"{$inAcademicPeriod}"}}}}</otherParam>
+                        </otherParams>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$inToken}</header>
+                           <header name="Accept">application/vnd.hedtech.integration.v8+json</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="Sections" type="objectlist">
+                        <options>
+                           <option name="referenceTo">sectionSummary</option>
+                        </options>
+                        <xquery>{for $sec in //root/element()
+return
+&lt;sectionSummary&gt;
+   &lt;title&gt;{$sec/title/data()}&lt;/title&gt;
+   &lt;number&gt;{$sec/number/data()}&lt;/number&gt;
+   &lt;code&gt;{$sec/code/data()}&lt;/code&gt;
+   &lt;maxEnrollment&gt;{$sec/maxEnrollment/data()}&lt;/maxEnrollment&gt;
+   &lt;startOn&gt;{$sec/startOn/data()}&lt;/startOn&gt;
+	&lt;courseID&gt;{$sec/course/id/data()}&lt;/courseID&gt;
+&lt;/sectionSummary&gt;}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get All Email Types"
+                       maxRedirects="100"
+                       name="Get All Email Types"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter name="inToken"
+                                nogen="true"
+                                required="false"
+                                testWith=""
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/api/email-types"
+                                        verb="GET">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$inToken}</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output/>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get Academic Period By ID"
+                       maxRedirects="100"
+                       name="Get Academic Period By ID"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter name="APID"
+                                nogen="true"
+                                required="false"
+                                testWith="6fcc22fe-2786-4359-9805-5587d162c026"
+                                type="string"/>
+                     <parameter name="inToken"
+                                nogen="true"
+                                required="false"
+                                testWith="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2ciOlsiQVVESVRfTE9HUyIsImFwaV9tY19mZWF0dXJlc19lbmFibGVkIiwiZGFfc3RhdHVzX3BhZ2UiLCJhcHBsaWNhdGlvbl9tb25pdG9yaW5nIiwiU0hPV19ORVdfV0laQVJEIiwiU0hPV19ORVdfV0laQVJEIiwiYXBwbGljYXRpb25fbW9uaXRvcmluZyIsImFwcGxpY2F0aW9uX21vbml0b3JpbmciLCJ0ZXN0MSJdLCJ0ZW5hbnQiOnsiaWQiOiI1ZjEzZGMyNi0xZWI0LTQ3NTEtYThjZS0yMDZiMWQ4NjIyZGEiLCJhbGlhcyI6ImVpdDkwNyIsIm5hbWUiOiJFdGhvcyBJbnRlZ3JhdGlvbiBUZWFtIiwibGFiZWwiOiJCYW5uZXIiLCJhY2NvdW50SWQiOiJJbnRlcm5hbEV0aG9zIEludGVncmF0aW9uIFRlYW0ifSwic3ViIjoiNTdlZTBkZTYtZGMzNC00YzFmLWFkOTMtZDg5NDcxNTY5ODZjIiwiaWF0IjoxNjU5MDA3MzcwLCJleHAiOjE2NTkwMDc2NzB9.LkSFGNc3IncS84wJokZhxCnVa-GSP9KLTsnvwvSbG4o"
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://integrateapi.elluciancloud.com/api/academic-periods/{$APID}"
+                                        verb="GET">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <httpHeaders>
+                           <header name="Authorization">Bearer {$inToken}</header>
+                           <header name="Accept">application/json</header>
+                        </httpHeaders>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="title" property="title" type="string"/>
+                     <field description="" name="startOn" property="startOn" type="string"/>
+                     <field description="" name="endOn" property="endOn" type="string"/>
+                  </output>
+               </action>
+            </actions>
+            <objects>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="root">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="emptyName"
+                            nullable="true"
+                            required="false"
+                            type="objectlist">
+                        <options>
+                           <option name="referenceTo">emptyName</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="emptyName">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="code" nullable="true" required="false" type="int"/>
+                     <field name="endOn" nullable="true" required="false" type="string"/>
+                     <field name="startOn" nullable="true" required="false" type="string"/>
+                     <field name="id" nullable="true" required="false" type="string"/>
+                     <field name="title" nullable="true" required="false" type="string"/>
+                     <field name="category"
+                            nullable="true"
+                            required="false"
+                            type="reference">
+                        <options>
+                           <option name="referenceTo">category</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="censusDates"
+                            nullable="true"
+                            required="false"
+                            type="string"/>
+                     <field name="registration"
+                            nullable="true"
+                            required="false"
+                            type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="category">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="parent" nullable="true" required="false" type="reference">
+                        <options>
+                           <option name="referenceTo">parent</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="sectionDateOverride"
+                            nullable="true"
+                            required="false"
+                            type="string"/>
+                     <field name="type" nullable="true" required="false" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="parent">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="id" nullable="true" required="false" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="academicPeriod">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="id" nullable="true" required="false" type="string"/>
+                     <field name="startOn" nullable="true" required="false" type="string"/>
+                     <field name="endOn" nullable="true" required="false" type="string"/>
+                     <field name="title" nullable="true" required="false" type="string"/>
+                     <field name="categoryType"
+                            nullable="true"
+                            required="false"
+                            type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="sectionSummary">
+                  <description/>
+                  <detail>
+                     <field name="title" nullable="true" required="false" type="string"/>
+                     <field name="number" nullable="true" required="false" type="string"/>
+                     <field name="code" nullable="true" required="false" type="int"/>
+                     <field name="maxEnrollment"
+                            nullable="true"
+                            required="false"
+                            type="string"/>
+                     <field name="startOn" nullable="true" required="false" type="string"/>
+                     <field name="periodID" nullable="true" required="false" type="string"/>
+                     <field name="courseID" nullable="true" required="false" type="string"/>
+                  </detail>
+               </processObject>
+            </objects>
+         </businessConnector>
+      </types1:Entry>
+      <types1:GUID>bgHCKc32bO4bnEpPCfTAGx</types1:GUID>
+      <types1:DisplayName>EllucianCloud_SC</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:16.904Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

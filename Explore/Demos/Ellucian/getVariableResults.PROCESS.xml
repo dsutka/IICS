@@ -1,0 +1,150 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>aaa-gt-3643668-2020-12-08T21:52:26.005Z::pd.xml</types1:EntryId>
+      <types1:Name>getVariableResults</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags>.anonymous</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2020-12-08T21:52:26Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2020-12-08T21:54:24Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.getVariableResults/getVariableResults.pd.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="getVariableResults"
+                  name="getVariableResults"
+                  overrideAPIName="false">
+            <appliesTo/>
+            <description/>
+            <tags>.anonymous</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="AorW" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="outResults" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:$any</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="tempAddress" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:AddressDetails</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">kNQmguOoVAGgnx2UTQ3426</option>
+                  </options>
+               </field>
+               <field description="" name="tempWeather" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:WeatherDetails</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">3zNH1aXmZ2OcB8tJ1StcKi</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="none">
+               <rest>
+                  <allowAnonymousAccess/>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="kigikepf" targetId="kigikepe"/>
+               </start>
+               <container id="kigikepe" type="exclusive">
+                  <title>AorW</title>
+                  <flow id="kigikepi">
+                     <assignment id="kigikepx">
+                        <title>Assignment to tempAddress, outResults</title>
+                        <operation source="formula" to="temp.tempAddress">
+                           <expression language="XQuery">&lt;AddressDetails&gt;
+   &lt;LongAddress&gt;123 Main Street, Springfield USA&lt;/LongAddress&gt;
+   &lt;Longitude&gt;88.88&lt;/Longitude&gt;
+   &lt;Latitude&gt;99.99&lt;/Latitude&gt;
+&lt;/AddressDetails&gt;
+</expression>
+                        </operation>
+                        <operation source="field" to="output.outResults">temp.tempAddress</operation>
+                     </assignment>
+                     <link id="kigikepj" targetId="kigikepe" type="containerLink"/>
+                  </flow>
+                  <flow id="kigikepl">
+                     <assignment id="kigikeqn">
+                        <title>Assignment to tempWeather, outResults</title>
+                        <operation source="formula" to="temp.tempWeather">
+                           <expression language="XQuery">&lt;WeatherDetails&gt;
+   &lt;Description&gt;Really Cold&lt;/Description&gt;
+   &lt;Temperature&gt;0&lt;/Temperature&gt;
+   &lt;Humidity&gt;0&lt;/Humidity&gt;
+   &lt;Windspeed&gt;20&lt;/Windspeed&gt;
+&lt;/WeatherDetails&gt;
+</expression>
+                        </operation>
+                        <operation source="field" to="output.outResults">temp.tempWeather</operation>
+                     </assignment>
+                     <link id="kigikepm" targetId="kigikepe" type="containerLink"/>
+                  </flow>
+                  <link id="kigikeph" targetId="kigikepi" type="containerLink">
+                     <condition source="formula">
+                        <function name="contains">
+                           <arg name="left">{$input.AorW}</arg>
+                           <arg name="right">A</arg>
+                        </function>
+                     </condition>
+                  </link>
+                  <link id="kigikepk" targetId="kigikepl" type="containerLink"/>
+                  <link id="kigikepg" targetId="c"/>
+               </container>
+               <end id="c"/>
+            </flow>
+         </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>8e485f41-593d-4c18-8da5-0b3c98195a58</ns1:Id>
+               <ns1:Name>A</ns1:Name>
+               <ns1:CreatedBy>davesutka@informaticaR28.com</ns1:CreatedBy>
+               <ns1:CreationDate>2020-12-08T21:54:51Z</ns1:CreationDate>
+               <ns1:ModifiedBy>davesutka@informaticaR28.com</ns1:ModifiedBy>
+               <ns1:ModificationDate>2020-12-08T21:54:51Z</ns1:ModificationDate>
+               <ns1:Data format="json">{
+	 "AorW": "A"
+}</ns1:Data>
+            </ns1:SampleData>
+            <ns1:SampleData>
+               <ns1:Id>8412458a-6da3-43bc-a5dd-47569bbea778</ns1:Id>
+               <ns1:Name>W</ns1:Name>
+               <ns1:CreatedBy>davesutka@informaticaR28.com</ns1:CreatedBy>
+               <ns1:CreationDate>2021-01-05T20:54:29Z</ns1:CreationDate>
+               <ns1:ModifiedBy>davesutka@informaticaR28.com</ns1:ModifiedBy>
+               <ns1:ModificationDate>2021-01-05T20:54:36Z</ns1:ModificationDate>
+               <ns1:Data format="json">{
+	 "AorW": "W"
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
+      </types1:Entry>
+      <types1:GUID>8s0jo3YyZbalMqubLVHM0R</types1:GUID>
+      <types1:DisplayName>getVariableResults</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:16.934Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

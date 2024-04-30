@@ -1,0 +1,25 @@
+{
+  "objectInfo" : {
+    "id" : "bgHCKc32bO4bnEpPCfTAGx",
+    "name" : "EllucianCloud_SC",
+    "type" : "AI_SERVICE_CONNECTOR",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "DtJGD4ARW8UBM7z-gt-4669589-2019-11-19T13:28:19.48Z::svc.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "*** Service Connector describing how to leverage Course-centric API calls against the Ellucian Ethos API",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "updateTime" : "2024-04-30T12:04:19.694Z",
+  "objectRefs" : [ ]
+}

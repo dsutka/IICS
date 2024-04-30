@@ -1,0 +1,25 @@
+{
+  "objectInfo" : {
+    "id" : "108Mw9bBhWuhaE3KEjFs0U",
+    "name" : "CourseData",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "KvVFSJsJGD4ARW8-gt-9133274-2019-11-25T13:58:26.594Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "*** Sample simplified/flattened Ellucian Course data schema",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "updateTime" : "2024-04-30T12:04:19.699Z",
+  "objectRefs" : [ ]
+}

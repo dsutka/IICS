@@ -1,0 +1,74 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>KvVFSJsJGD4ARW8-gt-9133274-2019-11-25T13:58:26.594Z::po.xml</types1:EntryId>
+      <types1:Name>CourseData</types1:Name>
+      <types1:ParentFlowIds>60S24FsWTzIf6ri-gt-4846578-2020-12-07T15:36:23.927Z::pd.xml,ck1SwEYrwn2H0Fd-gt-9148773-2019-11-25T14:19:20.041Z::pd.xml,fVQU8lpDqotxGom-gt-4654569-2020-10-13T13:09:41.087Z::pd.xml,JHQjATO9pH8sVYx-gt-74254436-2023-06-05T16:10:27.579Z::pd.xml,wcjxTBnJKoJBUht-gt-9250304-2019-11-25T14:12:38.361Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+processobject</types1:MimeType>
+      <types1:Description>*** Sample simplified/flattened Ellucian Course data schema</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2019-11-25T13:58:27Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2023-06-06T15:26:36Z</types1:ModificationDate>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:Entry>
+         <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                        displayName="CourseData"
+                        isByCopy="true"
+                        name="CourseData">
+            <description>*** Sample simplified/flattened Ellucian Course data schema</description>
+            <tags/>
+            <detail>
+               <field label="AcademicPeriodTitle"
+                      name="AcademicPeriodTitle"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+               <field label="CourseTitle"
+                      name="CourseTitle"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+               <field label="CourseNumber"
+                      name="CourseNumber"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+               <field label="SectionTitle"
+                      name="SectionTitle"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+               <field label="SectionNumber"
+                      name="SectionNumber"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+               <field label="SectionCode"
+                      name="SectionCode"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+               <field label="SectionMaxEnrollment"
+                      name="SectionMaxEnrollment"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+               <field label="SectionStartOn"
+                      name="SectionStartOn"
+                      nullable="true"
+                      required="false"
+                      type="string"/>
+            </detail>
+         </processObject>
+      </types1:Entry>
+      <types1:GUID>108Mw9bBhWuhaE3KEjFs0U</types1:GUID>
+      <types1:DisplayName>CourseData</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:16.679Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

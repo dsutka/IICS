@@ -1,19 +1,19 @@
 {
   "objectInfo" : {
-    "id" : "7cqFt8r0YCrdErEjc7GTY5",
-    "name" : "EllucianDemoConnection",
-    "type" : "AI_CONNECTION",
+    "id" : "14peuLG6HEkcI2DtH5RHiT",
+    "name" : "IncomingDataFeed",
+    "type" : "PROCESS",
     "metadata" : {
       "modelVersion" : {
         "major" : 1,
         "minor" : 0
       },
       "repoInfo" : {
-        "repoHandle" : "WaabchspiRASmvD-gt-9143388-2019-11-25T14:11:22.78Z::conn.xml"
+        "repoHandle" : "H0N0Qqi7EkWoKeE-gt-4172894-2019-11-25T15:53:38.538Z::pd.xml"
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "*** Connection to Ellucian API interface",
+        "description" : "",
         "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }
@@ -22,20 +22,20 @@
   "dataFileExtension" : "xml",
   "updateTime" : "2024-04-30T12:04:19.693Z",
   "objectRefs" : [ {
-    "id" : "bgHCKc32bO4bnEpPCfTAGx",
-    "name" : "EllucianCloud_SC",
-    "type" : "AI_SERVICE_CONNECTOR",
+    "id" : "c4jRjmNNeeKckzCFtcy6YQ",
+    "name" : "EllucianFiles",
+    "type" : "AI_CONNECTION",
     "metadata" : {
       "modelVersion" : {
         "major" : 1,
         "minor" : 0
       },
       "repoInfo" : {
-        "repoHandle" : "DtJGD4ARW8UBM7z-gt-4669589-2019-11-19T13:28:19.48Z::svc.xml"
+        "repoHandle" : "oHY2KsJlv58pIO3-gt-4173132-2019-11-25T15:55:06.423Z::conn.xml"
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "*** Service Connector describing how to leverage Course-centric API calls against the Ellucian Ethos API",
+        "description" : "",
         "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }

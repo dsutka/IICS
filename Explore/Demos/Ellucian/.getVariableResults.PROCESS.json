@@ -1,0 +1,65 @@
+{
+  "objectInfo" : {
+    "id" : "8s0jo3YyZbalMqubLVHM0R",
+    "name" : "getVariableResults",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "aaa-gt-3643668-2020-12-08T21:52:26.005Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "updateTime" : "2024-04-30T12:04:19.700Z",
+  "objectRefs" : [ {
+    "id" : "kNQmguOoVAGgnx2UTQ3426",
+    "name" : "AddressDetails",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "3z4KhPVEQrXhNUd-gt-216939-2020-08-10T16:51:14.885Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Example schema for simple address data",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  }, {
+    "id" : "3zNH1aXmZ2OcB8tJ1StcKi",
+    "name" : "WeatherDetails",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "lRoPzjlybduaa-gt-192770-2020-08-10T16:49:22.192Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Example schema for weather details",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/CustomerAPI"
+  } ]
+}

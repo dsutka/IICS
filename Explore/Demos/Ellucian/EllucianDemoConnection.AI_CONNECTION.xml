@@ -3,9 +3,9 @@
    <types1:Item>
       <types1:EntryId>WaabchspiRASmvD-gt-9143388-2019-11-25T14:11:22.78Z::conn.xml</types1:EntryId>
       <types1:Name>EllucianDemoConnection</types1:Name>
-      <types1:ParentFlowIds>60S24FsWTzIf6ri-gt-4846578-2020-12-07T15:36:23.927Z::pd.xml,ck1SwEYrwn2H0Fd-gt-9148773-2019-11-25T14:19:20.041Z::pd.xml,eMi4tciSrZMSPfX-gt-9624262-2020-10-13T13:14:22.079Z::pd.xml,fVQU8lpDqotxGom-gt-4654569-2020-10-13T13:09:41.087Z::pd.xml,rXoE9paabdqpw0V-gt-25029863-2021-03-25T12:25:33.279Z::pd.xml,wcjxTBnJKoJBUht-gt-9250304-2019-11-25T14:12:38.361Z::pd.xml</types1:ParentFlowIds>
+      <types1:ParentFlowIds>60S24FsWTzIf6ri-gt-4846578-2020-12-07T15:36:23.927Z::pd.xml,ck1SwEYrwn2H0Fd-gt-9148773-2019-11-25T14:19:20.041Z::pd.xml,eMi4tciSrZMSPfX-gt-9624262-2020-10-13T13:14:22.079Z::pd.xml,fVQU8lpDqotxGom-gt-4654569-2020-10-13T13:09:41.087Z::pd.xml,JHQjATO9pH8sVYx-gt-74254436-2023-06-05T16:10:27.579Z::pd.xml,rXoE9paabdqpw0V-gt-25029863-2021-03-25T12:25:33.279Z::pd.xml,wcjxTBnJKoJBUht-gt-9250304-2019-11-25T14:12:38.361Z::pd.xml</types1:ParentFlowIds>
       <types1:MimeType>application/xml+connection</types1:MimeType>
-      <types1:Description>Connection to Ellucian API interface</types1:Description>
+      <types1:Description>*** Connection to Ellucian API interface</types1:Description>
       <types1:AppliesTo/>
       <types1:Tags/>
       <types1:VersionLabel>1.0</types1:VersionLabel>
@@ -14,18 +14,17 @@
       <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
       <types1:CreationDate>2019-11-25T14:11:23Z</types1:CreationDate>
       <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
-      <types1:ModificationDate>2020-11-10T14:36:13Z</types1:ModificationDate>
-      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:ModificationDate>2023-06-06T15:24:52Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
       <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
-      <types1:PublicationDate>2021-03-25T12:37:23Z</types1:PublicationDate>
+      <types1:PublicationDate>2021-08-19T13:20:43Z</types1:PublicationDate>
       <types1:PublishedContributionId>project:/rt.connection/EllucianDemoConnection/EllucianDemoConnection.conn.xml</types1:PublishedContributionId>
-      <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
          <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
                      displayName="EllucianDemoConnection"
                      label="EllucianDemoConnection"
                      name="EllucianDemoConnection">
-            <description>Connection to Ellucian API interface</description>
+            <description>*** Connection to Ellucian API interface</description>
             <tags/>
             <agent/>
             <attributes>
@@ -38,12 +37,12 @@
                                name="EllucianCloud_SC"
                                supportsConnectionTest="false"
                                uuid="3e75338c-2aab-4b30-a953-5f32ce54021b">
-               <description/>
+               <description>Service Connector describing how to leverage Course-centric API calls against the Ellucian Ethos API</description>
             </businessConnector>
          </connection>
       </types1:Entry>
       <types1:GUID>7cqFt8r0YCrdErEjc7GTY5</types1:GUID>
       <types1:DisplayName>EllucianDemoConnection</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2021-08-19T12:55:32.677Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:17.456Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>

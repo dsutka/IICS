@@ -1,0 +1,114 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>fVQU8lpDqotxGom-gt-4654569-2020-10-13T13:09:41.087Z::pd.xml</types1:EntryId>
+      <types1:Name>GetCoursesByAPAsync</types1:Name>
+      <types1:ParentFlowIds>eMi4tciSrZMSPfX-gt-9624262-2020-10-13T13:14:22.079Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2020-10-13T13:09:41Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-05-26T12:44:12Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2021-05-26T13:17:59Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.GetCoursesByAPAsync/GetCoursesByAPAsync.pd.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="GetCoursesByAPAsync"
+                  name="GetCoursesByAPAsync"
+                  overrideAPIName="true">
+            <appliesTo/>
+            <description/>
+            <tags/>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="inAP" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="inToken" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="outData" type="objectlist">
+                  <options>
+                     <option name="referenceTo">$po:CourseData</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">108Mw9bBhWuhaE3KEjFs0U</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="outJSON" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="fileWriter" type="reference">
+                  <options>
+                     <option name="referenceTo">EllucianFiles:FileWriteTask</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">c4jRjmNNeeKckzCFtcy6YQ</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <rest/>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="kg7zfuqi" targetId="kg7zfuqh"/>
+               </start>
+               <milestone id="kg7zfuqh">
+                  <title>Return Control</title>
+                  <link id="kg7zfuqj" targetId="k3eifxrt"/>
+               </milestone>
+               <service id="k3eifxrt">
+                  <title>Get Sections By Academic Period</title>
+                  <serviceName>EllucianDemoConnection:Get Sections By Academic Period</serviceName>
+                  <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                  <serviceInput>
+                     <parameter name="inToken" source="field" updatable="true">input.inToken</parameter>
+                     <parameter name="inAcademicPeriod" source="field" updatable="true">input.inAP</parameter>
+                  </serviceInput>
+                  <link id="k3eifxso" targetId="k3eifxsn"/>
+               </service>
+               <subflow id="k3eifxsn">
+                  <title>HandleSections</title>
+                  <subflowGUID>gU8kzPdHyk8dHGe0aaLJ2i</subflowGUID>
+                  <subflowPath>HandleSections</subflowPath>
+                  <appliesTo>EllucianDemoConnection:sectionSummary</appliesTo>
+                  <appliesToDataName source="field">output.Sections</appliesToDataName>
+                  <runForEach>true</runForEach>
+                  <input>
+                     <parameter name="workingCourseData" source="field" updatable="true">output.outData</parameter>
+                     <parameter name="currentToken" source="field" updatable="true">input.inToken</parameter>
+                  </input>
+                  <outputDef/>
+                  <link id="kp5fw2jl" targetId="c"/>
+               </subflow>
+               <end id="c"/>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>c415RKNIFQKf9JGagWbU09</types1:GUID>
+      <types1:DisplayName>GetCoursesByAPAsync</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:18.639Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

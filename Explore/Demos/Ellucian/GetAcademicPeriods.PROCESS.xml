@@ -1,0 +1,139 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>eMi4tciSrZMSPfX-gt-9624262-2020-10-13T13:14:22.079Z::pd.xml</types1:EntryId>
+      <types1:Name>GetAcademicPeriods</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags>.anonymous</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2020-10-13T13:14:22Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-05-26T13:17:50Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2021-05-26T13:17:59Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.GetAcademicPeriods/GetAcademicPeriods.pd.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="GetAcademicPeriods"
+                  name="GetAcademicPeriods"
+                  overrideAPIName="false">
+            <appliesTo/>
+            <description/>
+            <tags>.anonymous</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="howMany" type="int">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <tempFields>
+               <field description="" name="workingIndex" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="none">
+               <rest>
+                  <allowAnonymousAccess/>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="kg7zldfb" targetId="kg7zldfa"/>
+               </start>
+               <assignment id="kg7zldfa">
+                  <title>Hard code how many APs</title>
+                  <operation source="constant" to="input.howMany">1</operation>
+                  <link id="kg7zldfc" targetId="kg7zlddi"/>
+               </assignment>
+               <assignment id="kg7zlde7">
+                  <title>Increment index</title>
+                  <operation source="formula" to="temp.workingIndex">
+                     <expression language="XQuery">$temp.workingIndex + 1</expression>
+                  </operation>
+                  <link id="kg7zldef" targetId="kg7zldee"/>
+               </assignment>
+               <service id="kg7zlddi">
+                  <title>Get Token</title>
+                  <serviceName>EllucianDemoConnection:Get Token</serviceName>
+                  <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                  <serviceInput/>
+                  <link id="kg7zlddq" targetId="kg7zlddp"/>
+               </service>
+               <service id="kg7zlddp">
+                  <title>Get All Academic Periods</title>
+                  <serviceName>EllucianDemoConnection:Get All Academic Periods</serviceName>
+                  <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                  <serviceInput>
+                     <parameter name="inToken" source="field" updatable="true">output.sessionToken</parameter>
+                     <parameter name="offset" source="constant">0</parameter>
+                     <parameter name="limit" source="field" updatable="true">input.howMany</parameter>
+                  </serviceInput>
+                  <link id="kg7zlde8" targetId="kg7zlde7"/>
+               </service>
+               <container id="kg7zldee" type="exclusive">
+                  <title>Index</title>
+                  <flow id="kg7zldei">
+                     <end id="kg80c0w2">
+                        <title>Done</title>
+                     </end>
+                  </flow>
+                  <flow id="kg7zldel">
+                     <subflow id="kg7zldh8">
+                        <title>GetCoursesByAPAsync</title>
+                        <subflowGUID>c415RKNIFQKf9JGagWbU09</subflowGUID>
+                        <subflowPath>GetCoursesByAPAsync</subflowPath>
+                        <runForEach>false</runForEach>
+                        <input>
+                           <parameter name="inAP" source="formula" updatable="true">
+                              <expression language="XQuery">$output.APs[$temp.workingIndex]/id </expression>
+                           </parameter>
+                           <parameter name="inToken" source="field" updatable="true">output.sessionToken</parameter>
+                        </input>
+                        <outputDef>
+                           <field name="outData" type="objectlist">
+                              <options>
+                                 <option name="referenceTo">$po:CourseData</option>
+                                 <option hide="true" name="multiSelect">true</option>
+                                 <option name="required">false</option>
+                                 <option name="isCopy">true</option>
+                                 <option name="guid">108Mw9bBhWuhaE3KEjFs0U</option>
+                              </options>
+                           </field>
+                        </outputDef>
+                        <link id="kg80c0wf" targetId="kg80c0wd"/>
+                     </subflow>
+                     <jumpTo id="kg80c0wd">
+                        <link id="kg80c0we" targetId="kg7zlde7"/>
+                     </jumpTo>
+                  </flow>
+                  <link id="kg7zldeh" targetId="kg7zldei" type="containerLink">
+                     <condition source="formula">
+                        <function name="greater-than">
+                           <arg name="left">{$temp.workingIndex}</arg>
+                           <arg name="right">{$input.howMany }</arg>
+                        </function>
+                     </condition>
+                  </link>
+                  <link id="kg7zldek" targetId="kg7zldel" type="containerLink"/>
+               </container>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>1MPyFCVupWQebcvdJ24x2l</types1:GUID>
+      <types1:DisplayName>GetAcademicPeriods</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:19.058Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

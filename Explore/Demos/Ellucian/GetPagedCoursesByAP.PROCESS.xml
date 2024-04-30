@@ -1,0 +1,211 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>JHQjATO9pH8sVYx-gt-74254436-2023-06-05T16:10:27.579Z::pd.xml</types1:EntryId>
+      <types1:Name>GetPagedCoursesByAP</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>*** Returns a detailed list of courses from Ellucian based on a specific Academic Period ID, based on pages of values.</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.anonymous</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2023-06-05T16:10:28Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2023-06-06T15:25:26Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2023-06-05T20:14:19Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.GetPagedCoursesByAP/GetPagedCoursesByAP.pd.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="GetPagedCoursesByAP"
+                  name="GetPagedCoursesByAP"
+                  overrideAPIName="true">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description>*** Returns a detailed list of courses from Ellucian based on a specific Academic Period ID, based on pages of values.</description>
+            <tags>.anonymous</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="inAP" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="inOffset" type="int">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="inCount" type="int">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="outData" type="objectlist">
+                  <options>
+                     <option name="referenceTo">$po:CourseData</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">108Mw9bBhWuhaE3KEjFs0U</option>
+                  </options>
+               </field>
+               <field description="" name="outStatus" type="string">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">OK</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="MasterSections" type="objectlist">
+                  <options>
+                     <option name="referenceTo">EllucianDemoConnection:sectionSummary</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">7cqFt8r0YCrdErEjc7GTY5</option>
+                  </options>
+               </field>
+               <field description="" name="howMany" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment skipIfRunning="false" suspendOnFault="false" tracingLevel="verbose">
+               <rest>
+                  <allowAnonymousAccess/>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="lij1tb2y" targetId="kz5lvdqq"/>
+               </start>
+               <eventContainer id="kz5lvdqq">
+                  <service id="k3eifxs0">
+                     <title>Get Token</title>
+                     <serviceName>EllucianDemoConnection:Get Token</serviceName>
+                     <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                     <serviceInput/>
+                  </service>
+                  <flow id="kz5lvdqs">
+                     <link id="kz5lvdqt" targetId="kz5lvdqq" type="containerLink"/>
+                  </flow>
+                  <flow id="kz5lvdqv">
+                     <assignment id="kz5lvdr9">
+                        <title>Set outStatus</title>
+                        <operation source="formula" to="output.outStatus">
+                           <expression language="XQuery">'Failed to Authorize to Ellucian: ' || $output.AuthFault[1]/detail </expression>
+                        </operation>
+                        <link id="kz5lvdse" targetId="kz5lvdsd"/>
+                     </assignment>
+                     <end id="kz5lvdsd">
+                        <title>Failed</title>
+                        <httpStatus>401</httpStatus>
+                     </end>
+                  </flow>
+                  <link id="kz5lvdqr" targetId="kz5lvdqs" type="containerLink"/>
+                  <link id="k3eifxs2" targetId="k3eifxrt"/>
+                  <events>
+                     <catch faultField="AuthFault" id="kz5lvdqp" interrupting="true">
+                        <link id="kz5lvdqu" targetId="kz5lvdqv" type="containerLink"/>
+                     </catch>
+                  </events>
+               </eventContainer>
+               <service id="k3eifxrt">
+                  <title>Get Sections By Academic Period</title>
+                  <serviceName>EllucianDemoConnection:Get Sections By Academic Period</serviceName>
+                  <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                  <serviceInput>
+                     <parameter name="inToken" source="field" updatable="true">output.sessionToken</parameter>
+                     <parameter name="inAcademicPeriod" source="field" updatable="true">input.inAP</parameter>
+                     <parameter name="offset" source="field" updatable="true">input.inOffset</parameter>
+                     <parameter name="limit" source="field" updatable="true">input.inCount</parameter>
+                  </serviceInput>
+                  <link id="kz5lvdnl" targetId="kz5lvdnk"/>
+               </service>
+               <assignment id="kz5lvdnk">
+                  <title>How Many Came Back</title>
+                  <operation source="formula" to="temp.howMany">
+                     <expression language="XQuery">list:count($output.Sections)</expression>
+                  </operation>
+                  <link id="kz5lvdod" targetId="kz5lvdoc"/>
+               </assignment>
+               <container id="kz5lvdoc" type="exclusive">
+                  <title>How Many?</title>
+                  <flow id="kz5lvdog">
+                     <assignment id="kz5lvdp8">
+                        <title>Add batch of Sections</title>
+                        <operation source="formula" to="temp.MasterSections">
+                           <expression language="XQuery">list:append($temp.MasterSections , $output.Sections )</expression>
+                        </operation>
+                        <link id="lij1tb3n" targetId="lij1tb3m"/>
+                     </assignment>
+                     <subflow id="lij1tb3m">
+                        <title>HandleSections</title>
+                        <subflowGUID>gU8kzPdHyk8dHGe0aaLJ2i</subflowGUID>
+                        <subflowPath>HandleSections</subflowPath>
+                        <appliesTo>EllucianDemoConnection:sectionSummary</appliesTo>
+                        <appliesToDataName source="field">temp.MasterSections</appliesToDataName>
+                        <runForEach>true</runForEach>
+                        <input>
+                           <parameter name="workingCourseData" source="field" updatable="true">output.outData</parameter>
+                           <parameter name="currentToken" source="field" updatable="true">output.sessionToken</parameter>
+                        </input>
+                        <outputDef/>
+                        <link id="lij1tb48" targetId="lij1tb47"/>
+                     </subflow>
+                     <end id="lij1tb47"/>
+                  </flow>
+                  <flow id="kz5lvdoj">
+                     <assignment id="lij1tb4r">
+                        <title>Assignment to outStatus</title>
+                        <operation source="constant" to="output.outStatus">'No Section records available for that range'</operation>
+                     </assignment>
+                     <link id="kz5lvdok" targetId="kz5lvdoc" type="containerLink"/>
+                  </flow>
+                  <link id="kz5lvdof" targetId="kz5lvdog" type="containerLink">
+                     <condition source="formula">
+                        <function name="greater-than">
+                           <arg name="left">{$temp.howMany}</arg>
+                           <arg name="right">{0}</arg>
+                        </function>
+                     </condition>
+                  </link>
+                  <link id="kz5lvdoi" targetId="kz5lvdoj" type="containerLink"/>
+                  <link id="lij1tb5f" targetId="lij1tb5e"/>
+               </container>
+               <end id="lij1tb5e">
+                  <title>End No More Records</title>
+               </end>
+            </flow>
+         </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>75c267f3-586b-4562-8724-4322ee6b32f4</ns1:Id>
+               <ns1:Name>Example</ns1:Name>
+               <ns1:CreatedBy>davesutka@informaticaR28.com</ns1:CreatedBy>
+               <ns1:CreationDate>2023-06-05T16:10:28Z</ns1:CreationDate>
+               <ns1:ModifiedBy>davesutka@informaticaR28.com</ns1:ModifiedBy>
+               <ns1:ModificationDate>2023-06-05T16:10:28Z</ns1:ModificationDate>
+               <ns1:Data format="json">{
+	 "inAP": ""
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
+      </types1:Entry>
+      <types1:GUID>87Kk5LCJo6Yc6nNEW6wR6x</types1:GUID>
+      <types1:DisplayName>GetPagedCoursesByAP</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:18.92Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

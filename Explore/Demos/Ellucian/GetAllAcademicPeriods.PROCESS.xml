@@ -1,0 +1,163 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>rXoE9paabdqpw0V-gt-25029863-2021-03-25T12:25:33.279Z::pd.xml</types1:EntryId>
+      <types1:Name>GetAllAcademicPeriods</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>Example: Fetch all Ellucian Academic Periods.</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2021-03-25T12:25:33Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2023-06-06T14:20:30Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2023-06-06T14:20:51Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.GetAllAcademicPeriods/GetAllAcademicPeriods.pd.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="GetAllAcademicPeriods"
+                  name="GetAllAcademicPeriods"
+                  overrideAPIName="true">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description>Example: Fetch all Ellucian Academic Periods.</description>
+            <tags/>
+            <generator>Informatica Process Designer 11</generator>
+            <output>
+               <field description="" name="outAPs" type="objectlist">
+                  <options>
+                     <option name="referenceTo">EllucianDemoConnection:academicPeriod</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">7cqFt8r0YCrdErEjc7GTY5</option>
+                  </options>
+               </field>
+               <field description="" name="totalRecords" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="startAt" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+               <field description="" name="howMany" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">200</option>
+                  </options>
+               </field>
+               <field description="" name="totalCount" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+               <field description="" name="currentCount" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment skipIfRunning="false" suspendOnFault="false" tracingLevel="verbose">
+               <rest>
+                  <allowedGroups>
+                     <group>API Users</group>
+                  </allowedGroups>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="kmoumw8p" targetId="kg7zlddi"/>
+               </start>
+               <service id="kg7zlddi">
+                  <title>Get Token</title>
+                  <serviceName>EllucianDemoConnection:Get Token</serviceName>
+                  <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                  <serviceInput/>
+                  <link id="kg7zlddq" targetId="kg7zlddp"/>
+               </service>
+               <service id="kg7zlddp">
+                  <title>Get All Academic Periods</title>
+                  <serviceName>EllucianDemoConnection:Get All Academic Periods</serviceName>
+                  <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                  <serviceInput>
+                     <parameter name="inToken" source="field" updatable="true">output.sessionToken</parameter>
+                     <parameter name="offset" source="field" updatable="true">temp.startAt</parameter>
+                     <parameter name="limit" source="field" updatable="true">temp.howMany</parameter>
+                  </serviceInput>
+                  <link id="kmoumw96" targetId="kmoumw95"/>
+               </service>
+               <assignment id="kmoumw95">
+                  <title>Assignment to totalCount</title>
+                  <operation source="field" to="temp.totalCount">output.TotalAPCount</operation>
+                  <link id="kmoumw97" targetId="kmoumw8v"/>
+               </assignment>
+               <assignment id="kmoumw8v">
+                  <title>Add to Output</title>
+                  <operation source="formula" to="output.outAPs">
+                     <expression language="XQuery">list:append($output.outAPs , $output.APs )</expression>
+                  </operation>
+                  <operation source="formula" to="temp.currentCount">
+                     <expression language="XQuery">list:count($output.outAPs)</expression>
+                  </operation>
+                  <link id="kmov2ln9" targetId="kmov2ln8"/>
+               </assignment>
+               <container id="kmov2ln8" type="exclusive">
+                  <title>currentCount</title>
+                  <flow id="kmov2lnc">
+                     <assignment id="kmov2lnt">
+                        <title>Assignment to startAt</title>
+                        <operation source="formula" to="temp.startAt">
+                           <expression language="XQuery">$temp.startAt + $temp.howMany </expression>
+                        </operation>
+                        <link id="kmov2lox" targetId="kmov2lov"/>
+                     </assignment>
+                     <jumpTo id="kmov2lov">
+                        <link id="kmov2low" targetId="kg7zlddp"/>
+                     </jumpTo>
+                  </flow>
+                  <flow id="kmov2lnf">
+                     <assignment id="kmov2lpe">
+                        <title>Assignment to totalRecords</title>
+                        <operation source="field" to="output.totalRecords">temp.currentCount</operation>
+                     </assignment>
+                     <link id="kmov2lng" targetId="kmov2ln8" type="containerLink"/>
+                  </flow>
+                  <link id="kmov2lnb" targetId="kmov2lnc" type="containerLink">
+                     <condition source="formula">
+                        <function name="less-than">
+                           <arg name="left">{$temp.currentCount}</arg>
+                           <arg name="right">{$temp.totalCount }</arg>
+                        </function>
+                     </condition>
+                  </link>
+                  <link id="kmov2lne" targetId="kmov2lnf" type="containerLink"/>
+                  <link id="kmov2lna" targetId="kmoumw89"/>
+               </container>
+               <end id="kmoumw89">
+                  <title>End</title>
+               </end>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>eC1idspCq6wdOjK6CAObO1</types1:GUID>
+      <types1:DisplayName>GetAllAcademicPeriods</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:18.295Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

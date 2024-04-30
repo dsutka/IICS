@@ -1,0 +1,83 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>H0N0Qqi7EkWoKeE-gt-4172894-2019-11-25T15:53:38.538Z::pd.xml</types1:EntryId>
+      <types1:Name>IncomingDataFeed</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags>.anonymous</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2019-11-25T15:53:39Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2019-11-25T16:36:10Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2019-11-25T16:36:14Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.IncomingDataFeed/IncomingDataFeed.pd.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="IncomingDataFeed"
+                  name="IncomingDataFeed">
+            <appliesTo/>
+            <description/>
+            <tags>.anonymous</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="inData" type="objectlist">
+                  <options>
+                     <option name="referenceTo">$po:$any</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </parameter>
+            </input>
+            <tempFields>
+               <field description="" name="fileWriter" type="reference">
+                  <options>
+                     <option name="referenceTo">EllucianFiles:SerializeToDelimitedContentTask</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">c4jRjmNNeeKckzCFtcy6YQ</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <rest>
+                  <allowAnonymousAccess/>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="k3emg1yr" targetId="k3emg1yq"/>
+               </start>
+               <assignment id="k3emg1yq">
+                  <title>Set Up FileWriter</title>
+                  <operation source="constant" to="temp.fileWriter[1]/fileName">inData1.csv</operation>
+                  <operation source="field" to="temp.fileWriter[1]/customObjects">input.inData</operation>
+                  <link id="k3emg1ys" targetId="k3em0s4b"/>
+               </assignment>
+               <service id="k3em0s4b">
+                  <title>DelimitedContentWriter</title>
+                  <serviceName>EllucianFiles:DelimitedContentWriter</serviceName>
+                  <serviceGUID>c4jRjmNNeeKckzCFtcy6YQ</serviceGUID>
+                  <serviceInput>
+                     <parameter name="serializationTask" source="field" updatable="true">temp.fileWriter</parameter>
+                  </serviceInput>
+                  <link id="k3em0s4d" targetId="c"/>
+               </service>
+               <end id="c"/>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>14peuLG6HEkcI2DtH5RHiT</types1:GUID>
+      <types1:DisplayName>IncomingDataFeed</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:17.427Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

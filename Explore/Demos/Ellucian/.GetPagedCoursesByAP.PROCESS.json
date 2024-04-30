@@ -1,0 +1,85 @@
+{
+  "objectInfo" : {
+    "id" : "87Kk5LCJo6Yc6nNEW6wR6x",
+    "name" : "GetPagedCoursesByAP",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "JHQjATO9pH8sVYx-gt-74254436-2023-06-05T16:10:27.579Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "*** Returns a detailed list of courses from Ellucian based on a specific Academic Period ID, based on pages of values.",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "updateTime" : "2024-04-30T12:04:19.697Z",
+  "objectRefs" : [ {
+    "id" : "7cqFt8r0YCrdErEjc7GTY5",
+    "name" : "EllucianDemoConnection",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "WaabchspiRASmvD-gt-9143388-2019-11-25T14:11:22.78Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "*** Connection to Ellucian API interface",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/Ellucian"
+  }, {
+    "id" : "108Mw9bBhWuhaE3KEjFs0U",
+    "name" : "CourseData",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "KvVFSJsJGD4ARW8-gt-9133274-2019-11-25T13:58:26.594Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "*** Sample simplified/flattened Ellucian Course data schema",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/Ellucian"
+  }, {
+    "id" : "gU8kzPdHyk8dHGe0aaLJ2i",
+    "name" : "HandleSections",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "ck1SwEYrwn2H0Fd-gt-9148773-2019-11-25T14:19:20.041Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "*** Returns a flattened canonical Course record from Ellucian for specified Courses. Intended to be used iteratively over an array of Ellucian Course Section records",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Demos/Ellucian"
+  } ]
+}

@@ -1,0 +1,169 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>ck1SwEYrwn2H0Fd-gt-9148773-2019-11-25T14:19:20.041Z::pd.xml</types1:EntryId>
+      <types1:Name>HandleSections</types1:Name>
+      <types1:ParentFlowIds>60S24FsWTzIf6ri-gt-4846578-2020-12-07T15:36:23.927Z::pd.xml,fVQU8lpDqotxGom-gt-4654569-2020-10-13T13:09:41.087Z::pd.xml,JHQjATO9pH8sVYx-gt-74254436-2023-06-05T16:10:27.579Z::pd.xml,wcjxTBnJKoJBUht-gt-9250304-2019-11-25T14:12:38.361Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>*** Returns a flattened canonical Course record from Ellucian for specified Courses. Intended to be used iteratively over an array of Ellucian Course Section records</types1:Description>
+      <types1:AppliesTo>EllucianDemoConnection:sectionSummary</types1:AppliesTo>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>davesutka@informaticaR28.com</types1:CreatedBy>
+      <types1:CreationDate>2019-11-25T14:19:20Z</types1:CreationDate>
+      <types1:ModifiedBy>davesutka@informaticaR28.com</types1:ModifiedBy>
+      <types1:ModificationDate>2023-06-06T15:25:45Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>davesutka@informaticaR28.com</types1:PublishedBy>
+      <types1:PublicationDate>2023-06-05T20:14:19Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.HandleSections/HandleSections.pd.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="HandleSections"
+                  name="HandleSections"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo isCopy="true">EllucianDemoConnection:sectionSummary</appliesTo>
+            <description>*** Returns a flattened canonical Course record from Ellucian for specified Courses. Intended to be used iteratively over an array of Ellucian Course Section records</description>
+            <tags/>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="workingCourseData" type="objectlist">
+                  <options>
+                     <option name="referenceTo">$po:CourseData</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">108Mw9bBhWuhaE3KEjFs0U</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="currentToken" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <tempFields>
+               <field description="" name="newCourseRecord" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:CourseData</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">108Mw9bBhWuhaE3KEjFs0U</option>
+                  </options>
+               </field>
+               <field description="" name="RetryCount" type="int">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment skipIfRunning="false" suspendOnFault="false" tracingLevel="none">
+               <rest/>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="k3ekbdyf" targetId="kfzhmkpw"/>
+               </start>
+               <eventContainer id="kfzhmkpw">
+                  <service id="k3eio8gq">
+                     <title>Get Course By ID</title>
+                     <serviceName>EllucianDemoConnection:Get Course By ID</serviceName>
+                     <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                     <serviceInput>
+                        <parameter name="courseID" source="field" updatable="true">courseID</parameter>
+                        <parameter name="inToken" source="field" updatable="true">input.currentToken</parameter>
+                     </serviceInput>
+                  </service>
+                  <flow id="kfzhmkpy">
+                     <assignment id="kfzhmkq8">
+                        <title>Map Section Fields to Output</title>
+                        <operation source="field" to="temp.newCourseRecord[1]/SectionCode">code</operation>
+                        <operation source="field" to="temp.newCourseRecord[1]/SectionMaxEnrollment">maxEnrollment</operation>
+                        <operation source="field" to="temp.newCourseRecord[1]/SectionNumber">number</operation>
+                        <operation source="field" to="temp.newCourseRecord[1]/SectionStartOn">startOn</operation>
+                        <operation source="field" to="temp.newCourseRecord[1]/SectionTitle">title</operation>
+                        <operation source="field" to="temp.newCourseRecord[1]/CourseNumber">output.outNumber</operation>
+                        <operation source="field" to="temp.newCourseRecord[1]/CourseTitle">output.outTitle</operation>
+                        <link id="kfzhmkqm" targetId="kfzhmkql"/>
+                     </assignment>
+                     <assignment id="kfzhmkql">
+                        <title>Add to Working List of data</title>
+                        <operation source="formula" to="input.workingCourseData">
+                           <expression language="XQuery">list:append($input.workingCourseData , $temp.newCourseRecord )</expression>
+                        </operation>
+                     </assignment>
+                     <link id="kfzhmkpz" targetId="kfzhmkpw" type="containerLink"/>
+                  </flow>
+                  <flow id="kfzhmkq1">
+                     <container id="kfzhmkqu" type="exclusive">
+                        <title>RetryCount</title>
+                        <flow id="kfzhmkqw">
+                           <assignment id="kfzhmkrh">
+                              <title>Assignment to RetryCount</title>
+                              <operation source="formula" to="temp.RetryCount">
+                                 <expression language="XQuery">$temp.RetryCount + 1</expression>
+                              </operation>
+                              <link id="kfzhmkt8" targetId="kfzhmkt7"/>
+                           </assignment>
+                           <service id="kfzhmkt7">
+                              <title>Get Token</title>
+                              <serviceName>EllucianDemoConnection:Get Token</serviceName>
+                              <serviceGUID>7cqFt8r0YCrdErEjc7GTY5</serviceGUID>
+                              <serviceInput/>
+                           </service>
+                           <link id="kfzhmkqx" targetId="kfzhmkqu" type="containerLink"/>
+                        </flow>
+                        <flow id="kfzhmkqz">
+                           <throw id="kfzhmkse">
+                              <title>Non-token related failure</title>
+                              <throwInput>
+                                 <parameter name="code" source="field" updatable="true">output.GetCourseFailure[1]/code</parameter>
+                                 <parameter name="detail" source="field" updatable="true">output.GetCourseFailure[1]/detail</parameter>
+                                 <parameter name="reason" source="field" updatable="true">output.GetCourseFailure[1]/reason</parameter>
+                              </throwInput>
+                           </throw>
+                        </flow>
+                        <link id="kfzhmkqv" targetId="kfzhmkqw" type="containerLink">
+                           <condition source="formula">
+                              <function name="equals">
+                                 <arg name="left">{$temp.RetryCount}</arg>
+                                 <arg name="right">{0}</arg>
+                              </function>
+                           </condition>
+                        </link>
+                        <link id="kfzhmkqy" targetId="kfzhmkqz" type="containerLink"/>
+                        <link id="kfzhmktq" targetId="kfzhmktp"/>
+                     </container>
+                     <assignment id="kfzhmktp">
+                        <title>Assignment to currentToken</title>
+                        <operation source="field" to="input.currentToken">output.sessionToken</operation>
+                        <link id="l95xszxj" targetId="l95xszxh"/>
+                     </assignment>
+                     <jumpTo id="l95xszxh">
+                        <link id="l95xszxi" targetId="kfzhmkpw"/>
+                     </jumpTo>
+                  </flow>
+                  <link id="kfzhmkpx" targetId="kfzhmkpy" type="containerLink"/>
+                  <link id="kfzhmkqk" targetId="c"/>
+                  <events>
+                     <catch faultField="GetCourseFailure" id="kfzhmkpv" interrupting="true">
+                        <link id="kfzhmkq0" targetId="kfzhmkq1" type="containerLink"/>
+                     </catch>
+                  </events>
+               </eventContainer>
+               <end id="c"/>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>gU8kzPdHyk8dHGe0aaLJ2i</types1:GUID>
+      <types1:DisplayName>HandleSections</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2024-04-30T12:04:18.494Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
